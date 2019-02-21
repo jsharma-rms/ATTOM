@@ -1,0 +1,1931 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/20/2014 12:26:48 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="CAR200VD7"
+  DTS:CreatorName="RMS\asengar"
+  DTS:DTSID="{7948BED3-07D9-4E6A-B79F-B247144F5799}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5058.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="ATTOM_SDR_VersionRef"
+  DTS:PackageType="5"
+  DTS:VersionBuild="143"
+  DTS:VersionGUID="{B9199142-39A2-4A9F-852D-29221FC1EEA3}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ERM]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C099CEDA-EFCD-477F-BAAF-4E785FE046CC}"
+      DTS:ObjectName="ERM">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::conERM]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=CAESDBPRD01\ESPRDSQL2012;Initial Catalog=ERM_V7_1;Provider=SQLNCLI11.0;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ES_LOG_DB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C6717D3A-2A7F-4027-BC10-C28FC7039A5D}"
+      DTS:ObjectName="ES_LOG_DB">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::varLogDB]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=CAESDBPRD01\ESPRDSQL2012;Initial Catalog=ES_LOG_DB_V7_1;Provider=SQLNCLI11.0;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ES_SDR_DB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{333F1D79-4D12-4C5B-A7D3-C5083929896F}"
+      DTS:ObjectName="ES_SDR_DB">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::conES_SDR_DB]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=CAESDBPRD01\ESPRDSQL2012;Initial Catalog=ES_SDR_DB_v7_1;Provider=SQLNCLI11.0;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[mailca.rms.com]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{CCB8404D-044D-4BF6-85ED-6DBBC7EFA2D4}"
+      DTS:ObjectName="mailca.rms.com">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=mailca.rms.com;UseWindowsAuthentication=False;EnableSsl=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="varFidelitySourceVersion"
+      DTS:ConfigurationVariable="\Package.Variables[User::varFidelitySourceVersion].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{208E1A6C-07B3-4C40-8585-F74C0C1D0EA0}"
+      DTS:ObjectName="Configuration 3" />
+    <DTS:Configuration
+      DTS:ConfigurationString="varLOGDB"
+      DTS:ConfigurationVariable="\Package.Variables[User::varLogDB].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{1D0E9C2F-6140-4A87-8AAA-1F2225338B4E}"
+      DTS:ObjectName="Configuration 4" />
+    <DTS:Configuration
+      DTS:ConfigurationString="varNotificationFrom"
+      DTS:ConfigurationVariable="\Package.Variables[User::varNotificationFrom].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{C4E67FFC-9B6F-491F-94E5-421CBFB399F8}"
+      DTS:ObjectName="Configuration 5" />
+    <DTS:Configuration
+      DTS:ConfigurationString="varNotificationUsers"
+      DTS:ConfigurationVariable="\Package.Variables[User::varNotificationUsers].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{238459DE-448A-4FC1-BE2B-B7D5AC6F2C43}"
+      DTS:ObjectName="Configuration 6" />
+    <DTS:Configuration
+      DTS:ConfigurationString="varSourceCode"
+      DTS:ConfigurationVariable="\Package.Variables[User::varSourceCode].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{9271296B-3461-41D1-B2D3-1703E79F6337}"
+      DTS:ObjectName="Configuration 7" />
+    <DTS:Configuration
+      DTS:ConfigurationString="varSourceName"
+      DTS:ConfigurationVariable="\Package.Variables[User::varSourceName].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{B09A0842-8EC2-4594-BADF-059FC58EB073}"
+      DTS:ObjectName="Configuration 8" />
+    <DTS:Configuration
+      DTS:ConfigurationString="conES_SDR_DB"
+      DTS:ConfigurationVariable="\Package.Variables[User::conES_SDR_DB].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{17BE13C1-AA83-498E-90F5-F3F627CBC885}"
+      DTS:ObjectName="Configuration 1" />
+    <DTS:Configuration
+      DTS:ConfigurationString="conERM"
+      DTS:ConfigurationVariable="\Package.Variables[User::conERM].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{8AFE6026-6D8E-4730-AD1A-6FFFC71D5DF4}"
+      DTS:ObjectName="Configuration 2" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0C0BB3F6-BA6B-4FF1-A7C1-9FCCD5260136}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::conERM]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="conERM">
+      <DTS:VariableValue
+        DTS:DataType="8">Data Source=CAESDBPRD01\ESPRDSQL2012;Initial Catalog=ERM_V7_1;Provider=SQLNCLI11.0;Integrated Security=SSPI;Auto Translate=False;</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5293F27C-A3FE-4E16-9422-ECDE43BA6B8C}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::conES_SDR_DB]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="conES_SDR_DB">
+      <DTS:VariableValue
+        DTS:DataType="8">Data Source=CAESDBPRD01\ESPRDSQL2012;Initial Catalog=ES_SDR_DB_v7_1;Provider=SQLNCLI11.0;Integrated Security=SSPI;Auto Translate=False;</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CE1B1BEB-D23D-4DAC-B9E7-3F9B43387A0B}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::varATTOMSourceVersion]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varATTOMSourceVersion">
+      <DTS:VariableValue
+        DTS:DataType="3">2</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{71875A84-AFAF-4E79-BE3F-CB89585C02D2}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varDebugmode">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{14112696-C933-4F20-A667-EF4677E7FC71}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varDeleteCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8EA5F69D-6C65-4828-B101-4537A4777513}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varInsertCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{80F5F13B-28E7-4E14-B0B6-FE1BA0EC54D7}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::varLOGDB]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varLogDB">
+      <DTS:VariableValue
+        DTS:DataType="8">Data Source=CAESDBPRD01\ESPRDSQL2012;Initial Catalog=ES_LOG_DB_V7_1;Provider=SQLNCLI11.0;Integrated Security=SSPI;Auto Translate=False;</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1A29F98A-F8BF-4270-8F50-BF65578AC31C}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::varNotificationFrom]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varNotificationFrom">
+      <DTS:VariableValue
+        DTS:DataType="8">ssingh3@rms.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EC1948C4-4839-46CF-AA42-144025688D41}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::varNotificationUsers]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varNotificationUsers">
+      <DTS:VariableValue
+        DTS:DataType="8">ssingh3@rms.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CE6E8F1A-FDFF-4FF0-9612-EE4AA6998CBC}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::varSourceCode]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSourceCode">
+      <DTS:VariableValue
+        DTS:DataType="3">30</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{21640CDD-D18A-401B-B881-24D41E4D1B94}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSourceDatabaseName">
+      <DTS:VariableValue
+        DTS:DataType="8">ES_SDR_DB_v7_1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8B62E947-B2F9-450A-8CF2-D91C81212267}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::varSourceName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSourceName">
+      <DTS:VariableValue
+        DTS:DataType="8">ATTOM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{54B72F7F-1D11-4093-A137-760C470A8F97}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSourceTableName">
+      <DTS:VariableValue
+        DTS:DataType="8">USATTOMStage</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{681AFCC2-1C1C-491E-982A-37EB3A9F78AB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetDatabaseName">
+      <DTS:VariableValue
+        DTS:DataType="8">ES_SDR_DB_v7_1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{263E8F5C-5E0F-4A5D-B304-6CAFD16F1684}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetTableName">
+      <DTS:VariableValue
+        DTS:DataType="8">USATTOMVersionRef</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{071D539E-A01B-4E8A-82B3-D2AF377DA8EC}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varUpdateCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:PropertyExpression
+    DTS:Name="PackagePassword">@[$Project::varPassword]</DTS:PropertyExpression>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container 2"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{4B6E777D-7450-4A59-8F97-403E36221B4C}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container 2">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container 2\SC_CreateScriptforPurgingTable"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Script Task"
+          DTS:DTSID="{A181DB60-3592-4E48-82FA-863AD8C5302E}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SC_CreateScriptforPurgingTable"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ScriptProject
+              Name="ST_714d39b176554809ae8ecc690c7f1745"
+              VSTAMajorVersion="3"
+              VSTAMinorVersion="0"
+              Language="CSharp"
+              ReadOnlyVariables="User::conES_SDR_DB,User::varATTOMSourceVersion,User::varTargetTableName"
+              ReadWriteVariables="User::varSourceDatabaseName,User::varTargetDatabaseName">
+              <ProjectItem
+                Name="Properties\Settings.settings"
+                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Resources.resx"
+                Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></ProjectItem>
+              <ProjectItem
+                Name="st_714d39b176554809ae8ecc690c7f1745.csproj"
+                Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="utf-16"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- This section defines project-level properties.
+
+       Configuration - Specifies whether the default configuration is Release or Debug.
+       Platform - Specifies what CPU the output of this project can run on.
+       OutputType - Must be "Library" for VSTA.
+       NoStandardLibraries - Set to "false" for VSTA.
+       RootNamespace - In C#, this specifies the namespace given to new files.
+                       In Visual Basic, all objects are wrapped in this namespace at runtime.
+       AssemblyName - Name of the output assembly.
+  -->
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <RootNamespace>ST_bc5f848bcdc541058a8a4ab93994ffb2.csproj</RootNamespace>
+    <AssemblyName>st_714d39b176554809ae8ecc690c7f1745</AssemblyName>
+    <ProjectGuid>{AB45AE06-6DD9-48C5-B12A-8B5818127C6B}</ProjectGuid>
+  </PropertyGroup>
+  <!-- This section defines properties that are set when the "Debug" configuration is
+       selected.
+
+       DebugSymbols - If true, create symbols (.pdb). If false, do not create symbols.
+       Optimize - If true, optimize the build output. If false, do not optimize.
+       OutputPath - Output path of the project relative to the project file.
+       EnableUnmanagedDebugging - If true, starting the debugger will attach both managed and unmanaged debuggers.
+       DefineConstants - Constants defined for the preprocessor.
+       Warning Level - Warning level for the compiler.
+  -->
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- This section defines properties that are set when the "Release" configuration is
+       selected.
+
+       DebugSymbols - If true, create symbols (.pdb). If false, do not create symbols.
+       Optimize - If true, optimize the build output. If false, do not optimize.
+       OutputPath - Output path of the project relative to the project file.
+       EnableUnmanagedDebugging - If true, starting the debugger will attach both managed and unmanaged debuggers.
+       DefineConstants - Constants defined for the preprocessor.
+       Warning Level - Warning level for the compiler.
+  -->
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- This section enables pre- and post-build steps. However,
+       it is recommended that MSBuild tasks be used instead of these properties.
+  -->
+  <PropertyGroup>
+    <PreBuildEvent></PreBuildEvent>
+    <PostBuildEvent></PostBuildEvent>
+  </PropertyGroup>
+  <!-- This sections specifies references for the project. -->
+  <ItemGroup>
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.Smo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=11.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+  </ItemGroup>
+  <!-- This section defines the user source files that are part of the
+       project.
+
+       Compile - Specifies a source file to compile.
+       EmbeddedResource - Specifies a .resx file for embedded resources.
+       None - Specifies a file that is not to be passed to the compiler (for instance,
+              a text file or XML file).
+       AppDesigner - Specifies the directory where the application properties files can
+                     be found.
+  -->
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ScriptMain.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <!-- Include the default configuration information and metadata files for the add-in.
+         These files are copied to the build output directory when the project is
+         built, and the path to the configuration file is passed to add-in on the command
+         line when debugging.
+    -->
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- This section defines VSTA properties that describe the host-changable project properties. -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="" />
+        <Host Name="SSIS_ScriptTask" />
+        <ProjectClient>
+          <HostIdentifier>SSIS_ST110</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+  </PropertyGroup>
+</Project>]]></ProjectItem>
+              <ProjectItem
+                Name="ScriptMain.cs"
+                Encoding="UTF8"><![CDATA[/*
+   Microsoft SQL Server Integration Services Script Task
+   Write scripts using Microsoft Visual C# 2008.
+   The ScriptMain is the entry point class of the script.
+*/
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Runtime;
+using System.Windows.Forms;
+using Microsoft.SqlServer.Management.Smo;
+using System.Collections.Specialized;
+
+namespace ST_bc5f848bcdc541058a8a4ab93994ffb2.csproj
+{
+    [Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute]
+    public partial class ScriptMain : Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
+    {
+
+        #region VSTA generated code
+        enum ScriptResults
+        {
+            Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success,
+            Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
+        };
+        #endregion
+
+        /*
+		The execution engine calls this method when the task executes.
+		To access the object model, use the Dts property. Connections, variables, events,
+		and logging features are available as members of the Dts property as shown in the following examples.
+
+		To reference a variable, call Dts.Variables["MyCaseSensitiveVariableName"].Value;
+		To post a log entry, call Dts.Log("This is my log text", 999, null);
+		To fire an event, call Dts.Events.FireInformation(99, "test", "hit the help message", "", 0, true);
+
+		To use the connections collection use something like the following:
+		ConnectionManager cm = Dts.Connections.Add("OLEDB");
+		cm.ConnectionString = "Data Source=localhost;Initial Catalog=AdventureWorks;Provider=SQLNCLI10;Integrated Security=SSPI;Auto Translate=False;";
+
+		Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
+		
+		To open Help, press F1.
+	*/
+
+        public void Main()
+        {
+            // TODO: Add your code here
+            string strScript = null;
+            StringCollection sc = new StringCollection();
+
+            /* With ScriptingOptions you can specify different scripting  
+            * options, for example to include IF NOT EXISTS, DROP  
+            * statements, output location etc*/
+            scriptOptions = new ScriptingOptions();
+            scriptOptions.IncludeIfNotExists = true;
+            ScriptingOptions scriptOptionsForDependendencies = new ScriptingOptions();
+            scriptOptionsForDependendencies.Indexes = true;
+            scriptOptionsForDependendencies.DriAll = true;
+            scriptOptions.IncludeIfNotExists = true;
+
+            string strTableName = Dts.Variables["varTargetTableName"].Value.ToString();
+            //string strConMgr = Dts.Variables["conES_SDR_DB"].Value.ToString();
+            string strVersion = Dts.Variables["varATTOMSourceVersion"].Value.ToString();
+
+            string str_con;
+            str_con = Dts.Connections["ES_SDR_DB"].ConnectionString.ToString();
+            System.Data.OleDb.OleDbConnection con = new System.Data.OleDb.OleDbConnection(str_con);
+
+            
+
+            con.Open();
+
+            Dts.Variables["varSourceDatabaseName"].Value = con.Database;
+            Dts.Variables["varTargetDatabaseName"].Value = con.Database;
+
+            Server myServer = new Server(con.DataSource);
+            Scripter scripter = new Scripter(myServer);
+            Database myDatabase = myServer.Databases[con.Database];
+
+            foreach (Table myTable in myDatabase.Tables)
+            {
+                /* Generating IF EXISTS and DROP command for tables */
+                if (myTable.Name.ToUpper().ToString() == strTableName.ToUpper().ToString())
+                {
+                    StringCollection tableScripts = myTable.Script(scriptOptions);
+                    /* Generating CREATE TABLE command */
+                    tableScripts = myTable.Script(scriptOptionsForDependendencies);
+                    foreach (string script in tableScripts)
+                        //Console.WriteLine(script);
+                        strScript = strScript + "  " + script;
+                }
+            }
+
+            strScript = strScript.ToUpper().ToString().Replace(strTableName.ToUpper().ToString(), strTableName.ToUpper().ToString() + "_Purge");                  
+            System.Data.OleDb.OleDbCommand cmd = new System.Data.OleDb.OleDbCommand("IF OBJECT_ID('dbo." + strTableName + "_Purge" + "' ,'U') IS NOT NULL DROP TABLE dbo.[" + strTableName + "_Purge]" + "\n " + strScript, con);
+            cmd.ExecuteNonQuery();
+            Dts.TaskResult = (int)ScriptResults.Success;
+        }
+
+        public ScriptingOptions scriptOptions { get; set; }
+    }
+}]]></ProjectItem>
+              <ProjectItem
+                Name="Project"
+                Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:ProjectId>{CF01822E-801F-4BC3-B6D2-DCE7BEED5BDB}</msb:ProjectId>
+		<msb:NoContent>Reference;Import;Folder</msb:NoContent>
+		<msb:Language>msBuild</msb:Language>
+		<msb:DisplayName>st_714d39b176554809ae8ecc690c7f1745</msb:DisplayName>
+		<msb:CodeName>st_714d39b176554809ae8ecc690c7f1745</msb:CodeName>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="ScriptMain.cs"/>
+		<msb:Project Include="st_714d39b176554809ae8ecc690c7f1745.csproj"/>
+	</msb:ItemGroup>
+</c:Project>]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Settings.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope = "member", Target = "ST_bc5f848bcdc541058a8a4ab93994ffb2.csproj.Properties.Settings.get_Default():ST_bc5f848bcdc541058a8a4ab93994ffb2.csproj.Properties.Sett" +
+    "ings")]
+
+namespace ST_bc5f848bcdc541058a8a4ab93994ffb2.csproj.Properties
+{
+
+
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
+    {
+
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+
+        public static Settings Default
+        {
+            get
+            {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\AssemblyInfo.cs"
+                Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_bc5f848bcdc541058a8a4ab93994ffb2.csproj")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("RMS")]
+[assembly: AssemblyProduct("ST_bc5f848bcdc541058a8a4ab93994ffb2.csproj")]
+[assembly: AssemblyCopyright("Copyright @ RMS 2014")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Resources.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope = "member", Target = "ST_bc5f848bcdc541058a8a4ab93994ffb2.csproj.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope = "member", Target = "ST_bc5f848bcdc541058a8a4ab93994ffb2.csproj.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope = "member", Target = "ST_bc5f848bcdc541058a8a4ab93994ffb2.csproj.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace ST_bc5f848bcdc541058a8a4ab93994ffb2.csproj.Properties
+{
+
+
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources
+    {
+
+        private static global::System.Resources.ResourceManager resourceMan;
+
+        private static global::System.Globalization.CultureInfo resourceCulture;
+
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources()
+        {
+        }
+
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager
+        {
+            get
+            {
+                if ((resourceMan == null))
+                {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ST_bc5f848bcdc541058a8a4ab93994ffb2.csproj.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture
+        {
+            get
+            {
+                return resourceCulture;
+            }
+            set
+            {
+                resourceCulture = value;
+            }
+        }
+    }
+}]]></ProjectItem>
+              <BinaryItem
+                Name="st_714d39b176554809ae8ecc690c7f1745.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAB4kgFkAAAAAAAAAAOAAAiELAQsAABgAAAAIAAAAAAAArjcA
+AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAFQ3AABXAAAAAEAAAFgEAAAAAAAAAAAAAAAAAAAA
+AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAtBcAAAAgAAAAGAAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAFgEAAAAQAAAAAYAAAAaAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAIAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAACQ
+NwAAAAAAAEgAAAACAAUAICQAADQTAAABAAAAAAAAAGgjAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4CKA4AAAoqEzACAC0AAAABAAARfgEAAAQtIHIBAABw0AIA
+AAIoDwAACm8QAAAKcxEAAAoKBoABAAAEfgEAAAQqGn4CAAAEKh4CgAIAAAQqGn4DAAAEKi5zBgAA
+BoADAAAEKh4CKBQAAAoqABswBABlAgAAAgAAERQKcxYAAAomAnMXAAAKKAoAAAYCKAkAAAYXbxgA
+AApzFwAACgsHF28ZAAAKBxdvGgAACgIoCQAABhdvGAAACgIoGwAACm8cAAAKcoEAAHBvHQAACm8e
+AAAKbx8AAAoMAigbAAAKbxwAAApypwAAcG8dAAAKbx4AAApvHwAACiYCKBsAAApvIAAACnLTAABw
+byEAAApvIgAACm8fAAAKDQlzIwAAChMEEQRvJAAACgIoGwAACm8cAAAKcucAAHBvHQAAChEEbyUA
+AApvJgAACgIoGwAACm8cAAAKchMBAHBvHQAAChEEbyUAAApvJgAAChEEbycAAApzKAAAChMFEQVz
+KQAACiYRBW8qAAAKEQRvJQAACm8rAAAKEwYRBm8sAAAKby0AAAoTCziMAAAAEQtvLgAACnQsAAAB
+EwcRB28vAAAKbzAAAApvHwAACghvMAAACm8fAAAKKDEAAAosWxEHAigJAAAGbzIAAAoTCBEHB28y
+AAAKEwgRCG8zAAAKEwwrFxEMbzQAAAoTCQZyPwEAcBEJKDUAAAoKEQxvNgAACi3g3hURDHUyAAAB
+Ew0RDSwHEQ1vNwAACtwRC284AAAKOmj////eFRELdTIAAAETDhEOLAcRDm83AAAK3AZvMAAACm8f
+AAAKCG8wAAAKbx8AAAoIbzAAAApvHwAACnJFAQBwKDkAAApvOgAACgocjS4AAAETDxEPFnJTAQBw
+ohEPFwiiEQ8YcnkBAHCiEQ8ZCKIRDxpyzwEAcKIRDxsGohEPKDsAAAoRBHM8AAAKEwoRCm89AAAK
+JgIoGwAAChZvPgAACioAAAABHAAAAgCBASSlARUAAAAAAgApAZ/IARUAAAAAHgJ7BAAABCoiAgN9
+BAAABCoeAig/AAAKKgAAALQAAADOyu++AQAAAJEAAABsU3lzdGVtLlJlc291cmNlcy5SZXNvdXJj
+ZVJlYWRlciwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJs
+aWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5I1N5c3RlbS5SZXNvdXJjZXMuUnVudGltZVJlc291
+cmNlU2V0AgAAAAAAAAAAAAAAUEFEUEFEULQAAABCU0pCAQABAAAAAAAMAAAAdjQuMC4zMDMxOQAA
+AAAFAGwAAAC8BQAAI34AACgGAAD4CAAAI1N0cmluZ3MAAAAAIA8AAOQBAAAjVVMABBEAABAAAAAj
+R1VJRAAAABQRAAAgAgAAI0Jsb2IAAAAAAAAAAgAAAVcdogEJAwAAAPolMwAWAAABAAAANAAAAAUA
+AAAHAAAACwAAAAIAAAA/AAAAAgAAABIAAAACAAAAAwAAAAQAAAAGAAAAAQAAAAgAAAABAAAAAQAA
+AAAACgABAAAAAAAGAM8AyAAKAOsA1gAOAEsBIgEGAGcByAAGAH0BbAEGAK4BmQESAGgCRQIGAAID
+6AIGAC0DGwMGAEQDGwMGAGEDGwMGAIADGwMGAJkDGwMGALIDGwMGAM0DGwMGAOgDGwMGAAEEGwMG
+ADoEGgQGAFoEGgQGAK8EnAQGAMwEyAAGANEEyAAGAPUEGwMKACEFCwUKADoFCwUGAE8FGgQOAHEF
+IgEKALIFkwUOAPEFIgEWAEoGKgYWAGIGKgYWAIcGKgYWAKMGKgYaAOgG1gYaAAsH+AYSAEMHRQIS
+AEoHRQISAFMHRQISAHQHRQISAH0HRQISAJgHRQIeAL0HqgcGAL0HqgcSAOMHRQISAOkHRQIGAAEI
+yAASABwIRQIiALIFkwUKADoIkwUGAFsIyAAaAHcI1gYaAIQI+AYAAAAAAQAAAAAAAQABAAAAEAAy
+ADwABQABAAEAAAEQAHIAPAAJAAMABQABABAAewCGAA0ABAAIAAMBAACxAAAAEQAFAAwAEQCNARMA
+EQC6ARcAEQAEAjkAAQCdAlIABgbKAlsAVoDSAl4AVoDaAl4AUCAAAAAAgxjKARsAAQBYIAAAAACT
+CNABHwABAJEgAAAAAJMI5AEkAAEAmCAAAAAAkwjwASkAAQCgIAAAAACWCBQCPQACALMgAAAAAIYY
+ygEbAAIApyAAAAAAkRhqBZ0AAgC8IAAAAACGACgCGwACAEwjAAAAAIYIeQJHAAIAVCMAAAAAhgiL
+AkwAAgBdIwAAAACGGMoBGwADAAAAAQDiAgAAAQDiAkEAygFsAEkAygFsAFEAygFsAFkAygFsAGEA
+ygFsAGkAygFsAHEAygFsAHkAygFsAIEAygFsAIkAygFsAJEAygFxAJkAygEbAKEAygEbAAkAygEb
+AKkA4wR2AKkA/gR9ACkAygGCAMEAygGOANEAygEbABEAygEbANkAygEbAOEAygEbADkAygEbADkA
+wwWhADkA2gWhADkA5gWhABkAAwamAOkAVAarAPEAawawAPkAdAa2AAkAfga6AOkAkwa+AAEBawbE
+AAkBtQa6ABEBygFsABkBGAcbABkBHQe6APkAKgfLABkBNAe6ACEBygFsACkBygHQACEBZgfXADEB
+awbdADkBjQfkAEkByQfqAFkB1we2AGkB+Ae6AHEBCAi6AHEBEAjwAHkBMwj2AOEAyQf+AIkB1we6
+AHEBSwgEAYkBUggLAZEBZwgbAFkBUggLAXEBSwgPAXEBbwgVAXEBSwgbAZkBygEhAaEBjggpAekA
+nghxABkAygEbAAgAGABiAAgAHABnACkAkwCUAC4ACwBVAS4AEwCdAS4AGwDNAS4AYwD/AS4AKwDT
+AS4AMwCdAS4AWwD2AS4AIwDNAS4AOwDcAS4AQwDNAUMAawBnAEkAkwCUAGEAmwBnAIEAmwBnAIMA
+qwBnACABmwBnAEABmwBnAIkALQECAAEAAwADAAQABAAAAH0BLwAAAPwBNAAAACACQgAAALwCVgAC
+AAIAAwABAAQABQACAAMABQACAAUABwACAAkACQABAAoACQAEgAAAAQAAABYZzy8AAAAAAAB4BAAA
+BAAAAAAAAAAAAAAAAQC/AAAAAAAEAAAAAAAAAAAAAAABAMgAAAAAAAsAAAAAAAAAAAAAAAoAAwEA
+AAAACgAAAAAAAAAAAAAACgAtAgAAAAALAAAAAAAAAAAAAAAKAAsGAAAAAAQAAAAAAAAAAAAAAAEA
+ygYAAAAAAgAAAAAAAAAAAAAAAQC/AAAAAAACAAAAAAAAAAAAAAABAMgAAAAAAAAAAAABAAAArQgA
+AAUABAAAAAAAADxNb2R1bGU+AHN0XzcxNGQzOWIxNzY1NTQ4MDlhZThlY2M2OTBjN2YxNzQ1LmRs
+bABSZXNvdXJjZXMAU1RfYmM1Zjg0OGJjZGM1NDEwNThhOGE0YWI5Mzk5NGZmYjIuY3Nwcm9qLlBy
+b3BlcnRpZXMAU2V0dGluZ3MAU2NyaXB0TWFpbgBTVF9iYzVmODQ4YmNkYzU0MTA1OGE4YTRhYjkz
+OTk0ZmZiMi5jc3Byb2oAU2NyaXB0UmVzdWx0cwBtc2NvcmxpYgBTeXN0ZW0AT2JqZWN0AFN5c3Rl
+bS5Db25maWd1cmF0aW9uAEFwcGxpY2F0aW9uU2V0dGluZ3NCYXNlAE1pY3Jvc29mdC5TcWxTZXJ2
+ZXIuU2NyaXB0VGFzawBNaWNyb3NvZnQuU3FsU2VydmVyLkR0cy5UYXNrcy5TY3JpcHRUYXNrAFZT
+VEFSVFNjcmlwdE9iamVjdE1vZGVsQmFzZQBFbnVtAFN5c3RlbS5SZXNvdXJjZXMAUmVzb3VyY2VN
+YW5hZ2VyAHJlc291cmNlTWFuAFN5c3RlbS5HbG9iYWxpemF0aW9uAEN1bHR1cmVJbmZvAHJlc291
+cmNlQ3VsdHVyZQAuY3RvcgBnZXRfUmVzb3VyY2VNYW5hZ2VyAGdldF9DdWx0dXJlAHNldF9DdWx0
+dXJlAEN1bHR1cmUAZGVmYXVsdEluc3RhbmNlAGdldF9EZWZhdWx0AERlZmF1bHQATWFpbgBNaWNy
+b3NvZnQuU3FsU2VydmVyLlNtbwBNaWNyb3NvZnQuU3FsU2VydmVyLk1hbmFnZW1lbnQuU21vAFNj
+cmlwdGluZ09wdGlvbnMAZ2V0X3NjcmlwdE9wdGlvbnMAc2V0X3NjcmlwdE9wdGlvbnMAPHNjcmlw
+dE9wdGlvbnM+a19fQmFja2luZ0ZpZWxkAHNjcmlwdE9wdGlvbnMAdmFsdWVfXwBTdWNjZXNzAEZh
+aWx1cmUAdmFsdWUAU3lzdGVtLlJ1bnRpbWUuVmVyc2lvbmluZwBUYXJnZXRGcmFtZXdvcmtBdHRy
+aWJ1dGUAU3lzdGVtLlJlZmxlY3Rpb24AQXNzZW1ibHlUaXRsZUF0dHJpYnV0ZQBBc3NlbWJseURl
+c2NyaXB0aW9uQXR0cmlidXRlAEFzc2VtYmx5Q29uZmlndXJhdGlvbkF0dHJpYnV0ZQBBc3NlbWJs
+eUNvbXBhbnlBdHRyaWJ1dGUAQXNzZW1ibHlQcm9kdWN0QXR0cmlidXRlAEFzc2VtYmx5Q29weXJp
+Z2h0QXR0cmlidXRlAEFzc2VtYmx5VHJhZGVtYXJrQXR0cmlidXRlAEFzc2VtYmx5Q3VsdHVyZUF0
+dHJpYnV0ZQBBc3NlbWJseVZlcnNpb25BdHRyaWJ1dGUAU3lzdGVtLlJ1bnRpbWUuQ29tcGlsZXJT
+ZXJ2aWNlcwBDb21waWxhdGlvblJlbGF4YXRpb25zQXR0cmlidXRlAFJ1bnRpbWVDb21wYXRpYmls
+aXR5QXR0cmlidXRlAHN0XzcxNGQzOWIxNzY1NTQ4MDlhZThlY2M2OTBjN2YxNzQ1AFN5c3RlbS5E
+aWFnbm9zdGljcwBEZWJ1Z2dlck5vblVzZXJDb2RlQXR0cmlidXRlAFR5cGUAUnVudGltZVR5cGVI
+YW5kbGUAR2V0VHlwZUZyb21IYW5kbGUAQXNzZW1ibHkAZ2V0X0Fzc2VtYmx5AFN5c3RlbS5Db21w
+b25lbnRNb2RlbABFZGl0b3JCcm93c2FibGVBdHRyaWJ1dGUARWRpdG9yQnJvd3NhYmxlU3RhdGUA
+Q29tcGlsZXJHZW5lcmF0ZWRBdHRyaWJ1dGUALmNjdG9yAFNTSVNTY3JpcHRUYXNrRW50cnlQb2lu
+dEF0dHJpYnV0ZQBTeXN0ZW0uQ29sbGVjdGlvbnMuU3BlY2lhbGl6ZWQAU3RyaW5nQ29sbGVjdGlv
+bgBzZXRfSW5jbHVkZUlmTm90RXhpc3RzAHNldF9JbmRleGVzAHNldF9EcmlBbGwAU2NyaXB0T2Jq
+ZWN0TW9kZWwAZ2V0X0R0cwBNaWNyb3NvZnQuU3FsU2VydmVyLk1hbmFnZWREVFMATWljcm9zb2Z0
+LlNxbFNlcnZlci5EdHMuUnVudGltZQBWYXJpYWJsZXMAZ2V0X1ZhcmlhYmxlcwBWYXJpYWJsZQBn
+ZXRfSXRlbQBnZXRfVmFsdWUAVG9TdHJpbmcAQ29ubmVjdGlvbnMAZ2V0X0Nvbm5lY3Rpb25zAENv
+bm5lY3Rpb25NYW5hZ2VyAGdldF9Db25uZWN0aW9uU3RyaW5nAFN5c3RlbS5EYXRhAFN5c3RlbS5E
+YXRhLk9sZURiAE9sZURiQ29ubmVjdGlvbgBTeXN0ZW0uRGF0YS5Db21tb24ARGJDb25uZWN0aW9u
+AE9wZW4AZ2V0X0RhdGFiYXNlAHNldF9WYWx1ZQBnZXRfRGF0YVNvdXJjZQBTZXJ2ZXIAU2NyaXB0
+ZXIARGF0YWJhc2VDb2xsZWN0aW9uAGdldF9EYXRhYmFzZXMARGF0YWJhc2UAVGFibGVDb2xsZWN0
+aW9uAGdldF9UYWJsZXMAU21vQ29sbGVjdGlvbkJhc2UAU3lzdGVtLkNvbGxlY3Rpb25zAElFbnVt
+ZXJhdG9yAEdldEVudW1lcmF0b3IAZ2V0X0N1cnJlbnQAVGFibGUATmFtZWRTbW9PYmplY3QAZ2V0
+X05hbWUAU3RyaW5nAFRvVXBwZXIAb3BfRXF1YWxpdHkAVGFibGVWaWV3VGFibGVUeXBlQmFzZQBT
+Y3JpcHQAU3RyaW5nRW51bWVyYXRvcgBDb25jYXQATW92ZU5leHQASURpc3Bvc2FibGUARGlzcG9z
+ZQBSZXBsYWNlAE9sZURiQ29tbWFuZABEYkNvbW1hbmQARXhlY3V0ZU5vblF1ZXJ5AHNldF9UYXNr
+UmVzdWx0AFNUX2JjNWY4NDhiY2RjNTQxMDU4YThhNGFiOTM5OTRmZmIyLmNzcHJvai5Qcm9wZXJ0
+aWVzLlJlc291cmNlcy5yZXNvdXJjZXMAAAB/UwBUAF8AYgBjADUAZgA4ADQAOABiAGMAZABjADUA
+NAAxADAANQA4AGEAOABhADQAYQBiADkAMwA5ADkANABmAGYAYgAyAC4AYwBzAHAAcgBvAGoALgBQ
+AHIAbwBwAGUAcgB0AGkAZQBzAC4AUgBlAHMAbwB1AHIAYwBlAHMAACV2AGEAcgBUAGEAcgBnAGUA
+dABUAGEAYgBsAGUATgBhAG0AZQAAK3YAYQByAEEAVABUAE8ATQBTAG8AdQByAGMAZQBWAGUAcgBz
+AGkAbwBuAAATRQBTAF8AUwBEAFIAXwBEAEIAACt2AGEAcgBTAG8AdQByAGMAZQBEAGEAdABhAGIA
+YQBzAGUATgBhAG0AZQAAK3YAYQByAFQAYQByAGcAZQB0AEQAYQB0AGEAYgBhAHMAZQBOAGEAbQBl
+AAAFIAAgAAANXwBQAHUAcgBnAGUAACVJAEYAIABPAEIASgBFAEMAVABfAEkARAAoACcAZABiAG8A
+LgABVV8AUAB1AHIAZwBlACcAIAAsACcAVQAnACkAIABJAFMAIABOAE8AVAAgAE4AVQBMAEwAIABE
+AFIATwBQACAAVABBAEIATABFACAAZABiAG8ALgBbAAETXwBQAHUAcgBnAGUAXQAKACAAAADIo5Zm
+VUrRTaHbu/53tChLAAi3elxWGTTgiQiJhF3NgIDMkQMGEhUDBhIZAyAAAQQAABIVBAAAEhkFAAEB
+EhkECAASFQQIABIZAwYSDAQAABIMBAgAEgwEIAASHQUgAQESHQMGEh0EKAASHQIGCAMGERQEAAAA
+AAQBAAAABCABAQ4EIAEBCAYAARJVEVkEIAASXQYgAgEOEl0EBwESFQUgAQERZQgBAAIAAAAAAAMA
+AAEEIAEBAgQgABJ1BCAAEnkFIAESfRwDIAAcAyAADgUgABKAgQYgARKAhRwEIAEBHAYgAQESgJEF
+IAASgJkGIAESgJ0OBSAAEoChBSAAEoCpBQACAg4OByABEoDBEh0FIAASgMUGAAMODg4OAyAAAgUA
+Ag4ODgUgAg4ODgUAAQ4dDgcgAgEOEoCJAyAACCcHEA4SHQ4OEoCJEoCREoCdEoCxEnEOEoDNEoCt
+EoDFEoDJEoDJHQ5HAQAaLk5FVEZyYW1ld29yayxWZXJzaW9uPXY0LjABAFQOFEZyYW1ld29ya0Rp
+c3BsYXlOYW1lEC5ORVQgRnJhbWV3b3JrIDQvAQAqU1RfYmM1Zjg0OGJjZGM1NDEwNThhOGE0YWI5
+Mzk5NGZmYjIuY3Nwcm9qAAAFAQAAAAAIAQADUk1TAAAZAQAUQ29weXJpZ2h0IEAgUk1TIDIwMTQA
+AAgBAAgAAAAAAB4BAAEAVAIWV3JhcE5vbkV4Y2VwdGlvblRocm93cwEAAHw3AAAAAAAAAAAAAJ43
+AAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAACQNwAAAAAAAAAAAAAAAAAAAAAAAAAAX0NvckRsbE1h
+aW4AbXNjb3JlZS5kbGwAAAAAAP8lACAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAEAEAAAABgAAIAAAAAAAAAAAAAAAAAAAAEAAQAAADAAAIAAAAAAAAAAAAAAAAAAAAEAAAAAAEgA
+AABYQAAAAAQAAAAAAAAAAAAAAAQ0AAAAVgBTAF8AVgBFAFIAUwBJAE8ATgBfAEkATgBGAE8AAAAA
+AL0E7/4AAAEAAAABAM8vFhkAAAEAzy8WGT8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABEAAAA
+AQBWAGEAcgBGAGkAbABlAEkAbgBmAG8AAAAAACQABAAAAFQAcgBhAG4AcwBsAGEAdABpAG8AbgAA
+AAAAAACwBGADAAABAFMAdAByAGkAbgBnAEYAaQBsAGUASQBuAGYAbwAAADwDAAABADAAMAAwADAA
+MAA0AGIAMAAAACgABAABAEMAbwBtAHAAYQBuAHkATgBhAG0AZQAAAAAAUgBNAFMAAACAACsAAQBG
+AGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAAAAAAUwBUAF8AYgBjADUAZgA4ADQAOABiAGMA
+ZABjADUANAAxADAANQA4AGEAOABhADQAYQBiADkAMwA5ADkANABmAGYAYgAyAC4AYwBzAHAAcgBv
+AGoAAAAAAEAADwABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAALgA2ADQAMgAyAC4A
+MQAyADIAMwA5AAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAHMAdABfADcAMQA0
+AGQAMwA5AGIAMQA3ADYANQA1ADQAOAAwADkAYQBlADgAZQBjAGMANgA5ADAAYwA3AGYAMQA3ADQA
+NQAuAGQAbABsAAAAUAAVAAEATABlAGcAYQBsAEMAbwBwAHkAcgBpAGcAaAB0AAAAQwBvAHAAeQBy
+AGkAZwBoAHQAIABAACAAUgBNAFMAIAAyADAAMQA0AAAAAAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwA
+RgBpAGwAZQBuAGEAbQBlAAAAcwB0AF8ANwAxADQAZAAzADkAYgAxADcANgA1ADUANAA4ADAAOQBh
+AGUAOABlAGMAYwA2ADkAMABjADcAZgAxADcANAA1AC4AZABsAGwAAAB4ACsAAQBQAHIAbwBkAHUA
+YwB0AE4AYQBtAGUAAAAAAFMAVABfAGIAYwA1AGYAOAA0ADgAYgBjAGQAYwA1ADQAMQAwADUAOABh
+ADgAYQA0AGEAYgA5ADMAOQA5ADQAZgBmAGIAMgAuAGMAcwBwAHIAbwBqAAAAAABEAA8AAQBQAHIA
+bwBkAHUAYwB0AFYAZQByAHMAaQBvAG4AAAAxAC4AMAAuADYANAAyADIALgAxADIAMgAzADkAAAAA
+AEgADwABAEEAcwBzAGUAbQBiAGwAeQAgAFYAZQByAHMAaQBvAG4AAAAxAC4AMAAuADYANAAyADIA
+LgAxADIAMgAzADkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAADAAAALA3AAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
+            </ScriptProject>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container 2\Sequence Container"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{8404813D-6D5B-4F5A-B182-FB2DD97B378F}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Sequence Container">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container 2\Sequence Container\SQL_CallVersionRefuspMapDataT1"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{93C2AAE3-15D7-422E-AF69-D837F41A2E9F}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL_CallVersionRefuspMapDataT1"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="2">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:DTSID="{C28B35A7-D25D-4AFE-BC3D-70A2E3D40926}"
+                  DTS:EvaluateAsExpression="True"
+                  DTS:Expression="@[User::varSourceTableName]+ (DT_STR, 1, 1252) &quot;1&quot;"
+                  DTS:IncludeInDebugDump="2345"
+                  DTS:Namespace="User"
+                  DTS:ObjectName="varSourceTableNameThread">
+                  <DTS:VariableValue
+                    DTS:DataType="8">USATTOMStage1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{C099CEDA-EFCD-477F-BAAF-4E785FE046CC}"
+                  SQLTask:SqlStatementSource="EXEC uspMapData ?, ?, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@varSrcDBName"
+                    SQLTask:DtsVariableName="User::varSourceDatabaseName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@varSrcTableName"
+                    SQLTask:DtsVariableName="User::varSourceTableNameThread"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@varTrgDBName"
+                    SQLTask:DtsVariableName="User::varTargetDatabaseName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@varTrgTableName"
+                    SQLTask:DtsVariableName="User::varTargetTableName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container 2\Sequence Container\SQL_CallVersionRefuspMapDataT2"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{72209984-1DF1-4DFC-85C5-F1C0D882DF40}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL_CallVersionRefuspMapDataT2"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:DTSID="{D1614D22-5013-40F2-890A-E1B7F7EA15BA}"
+                  DTS:EvaluateAsExpression="True"
+                  DTS:Expression="@[User::varSourceTableName]+ (DT_STR, 1, 1252) &quot;2&quot;"
+                  DTS:IncludeInDebugDump="2345"
+                  DTS:Namespace="User"
+                  DTS:ObjectName="varSourceTableNameThread">
+                  <DTS:VariableValue
+                    DTS:DataType="8">USATTOMStage2</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{C099CEDA-EFCD-477F-BAAF-4E785FE046CC}"
+                  SQLTask:SqlStatementSource="EXEC uspMapData ?, ?, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@varSrcDBName"
+                    SQLTask:DtsVariableName="User::varSourceDatabaseName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@varSrcTableName"
+                    SQLTask:DtsVariableName="User::varSourceTableNameThread"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@varTrgDBName"
+                    SQLTask:DtsVariableName="User::varTargetDatabaseName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@varTrgTableName"
+                    SQLTask:DtsVariableName="User::varTargetTableName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container 2\Sequence Container\SQL_CallVersionRefuspMapDataT3"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{E78DA376-8C36-4CF7-ACC8-9C10BCB436E1}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL_CallVersionRefuspMapDataT3"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:DTSID="{F9F8F9B3-B9A7-484A-9B29-3CF5393CF8C6}"
+                  DTS:EvaluateAsExpression="True"
+                  DTS:Expression="@[User::varSourceTableName]+ (DT_STR, 1, 1252) &quot;3&quot;"
+                  DTS:IncludeInDebugDump="2345"
+                  DTS:Namespace="User"
+                  DTS:ObjectName="varSourceTableNameThread">
+                  <DTS:VariableValue
+                    DTS:DataType="8">USATTOMStage3</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{C099CEDA-EFCD-477F-BAAF-4E785FE046CC}"
+                  SQLTask:SqlStatementSource="EXEC uspMapData ?, ?, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@varSrcDBName"
+                    SQLTask:DtsVariableName="User::varSourceDatabaseName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@varSrcTableName"
+                    SQLTask:DtsVariableName="User::varSourceTableNameThread"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@varTrgDBName"
+                    SQLTask:DtsVariableName="User::varTargetDatabaseName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@varTrgTableName"
+                    SQLTask:DtsVariableName="User::varTargetTableName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container 2\Sequence Container 1"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{8059679C-D2B8-4B73-9191-A1C18FCA0AB5}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Sequence Container 1">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container 2\Sequence Container 1\SQL_CallVersionRefuspMapDataT4"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{D5E0B7D3-7A9A-482E-877D-82B7BBDE543E}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL_CallVersionRefuspMapDataT4"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:DTSID="{B968B1E8-FCFE-47E4-9C43-D40F607D601D}"
+                  DTS:EvaluateAsExpression="True"
+                  DTS:Expression="@[User::varSourceTableName]+ (DT_STR, 1, 1252) &quot;4&quot;"
+                  DTS:IncludeInDebugDump="2345"
+                  DTS:Namespace="User"
+                  DTS:ObjectName="varSourceTableNameThread">
+                  <DTS:VariableValue
+                    DTS:DataType="8">USATTOMStage4</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{C099CEDA-EFCD-477F-BAAF-4E785FE046CC}"
+                  SQLTask:SqlStatementSource="EXEC uspMapData ?, ?, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@varSrcDBName"
+                    SQLTask:DtsVariableName="User::varSourceDatabaseName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@varSrcTableName"
+                    SQLTask:DtsVariableName="User::varSourceTableNameThread"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@varTrgDBName"
+                    SQLTask:DtsVariableName="User::varTargetDatabaseName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@varTrgTableName"
+                    SQLTask:DtsVariableName="User::varTargetTableName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container 2\Sequence Container 1\SQL_CallVersionRefuspMapDataT5"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{3C5DD102-0F33-40E9-A182-61447FB1CC4C}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL_CallVersionRefuspMapDataT5"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:DTSID="{E6559A9E-2B03-48AC-AF19-976C0D2CD614}"
+                  DTS:EvaluateAsExpression="True"
+                  DTS:Expression="@[User::varSourceTableName]+ (DT_STR, 1, 1252) &quot;5&quot;"
+                  DTS:IncludeInDebugDump="2345"
+                  DTS:Namespace="User"
+                  DTS:ObjectName="varSourceTableNameThread">
+                  <DTS:VariableValue
+                    DTS:DataType="8">USATTOMStage5</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{C099CEDA-EFCD-477F-BAAF-4E785FE046CC}"
+                  SQLTask:SqlStatementSource="EXEC uspMapData ?, ?, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@varSrcDBName"
+                    SQLTask:DtsVariableName="User::varSourceDatabaseName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@varSrcTableName"
+                    SQLTask:DtsVariableName="User::varSourceTableNameThread"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@varTrgDBName"
+                    SQLTask:DtsVariableName="User::varTargetDatabaseName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@varTrgTableName"
+                    SQLTask:DtsVariableName="User::varTargetTableName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container 2\Sequence Container 1\SQL_CallVersionRefuspMapDataT6"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{13CFE5A5-C42C-41E9-AAE8-5A80C2B9949F}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL_CallVersionRefuspMapDataT6"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="2">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:DTSID="{E5207BAB-4562-4EDC-B696-FDF86A325EF9}"
+                  DTS:EvaluateAsExpression="True"
+                  DTS:Expression="@[User::varSourceTableName]+ (DT_STR, 1, 1252) &quot;6&quot;"
+                  DTS:IncludeInDebugDump="2345"
+                  DTS:Namespace="User"
+                  DTS:ObjectName="varSourceTableNameThread">
+                  <DTS:VariableValue
+                    DTS:DataType="8">USATTOMStage6</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{C099CEDA-EFCD-477F-BAAF-4E785FE046CC}"
+                  SQLTask:SqlStatementSource="EXEC uspMapData ?, ?, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@varSrcDBName"
+                    SQLTask:DtsVariableName="User::varSourceDatabaseName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@varSrcTableName"
+                    SQLTask:DtsVariableName="User::varSourceTableNameThread"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@varTrgDBName"
+                    SQLTask:DtsVariableName="User::varTargetDatabaseName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@varTrgTableName"
+                    SQLTask:DtsVariableName="User::varTargetTableName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container 2\Sequence Container 1\SQL_CallVersionRefuspMapDataT7"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{F6F3A5B9-74A5-4405-9132-F0905D3622A8}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL_CallVersionRefuspMapDataT7"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="3">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:DTSID="{E4E4752C-B04F-4C03-B10D-4AAB0B5972DB}"
+                  DTS:EvaluateAsExpression="True"
+                  DTS:Expression="@[User::varSourceTableName]+ (DT_STR, 1, 1252) &quot;7&quot;"
+                  DTS:IncludeInDebugDump="2345"
+                  DTS:Namespace="User"
+                  DTS:ObjectName="varSourceTableNameThread">
+                  <DTS:VariableValue
+                    DTS:DataType="8">USATTOMStage7</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{C099CEDA-EFCD-477F-BAAF-4E785FE046CC}"
+                  SQLTask:SqlStatementSource="EXEC uspMapData ?, ?, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@varSrcDBName"
+                    SQLTask:DtsVariableName="User::varSourceDatabaseName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@varSrcTableName"
+                    SQLTask:DtsVariableName="User::varSourceTableNameThread"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@varTrgDBName"
+                    SQLTask:DtsVariableName="User::varTargetDatabaseName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="@varTrgTableName"
+                    SQLTask:DtsVariableName="User::varTargetTableName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container 2\SQL_CallPurgingProcedure"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{DC0A48A1-537D-40C1-8949-4701A0C43F33}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL_CallPurgingProcedure"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C099CEDA-EFCD-477F-BAAF-4E785FE046CC}"
+              SQLTask:BypassPrepare="False"
+              SQLTask:SqlStatementSource="EXEC [dbo].[uspRemoveVersionData] ?,?,?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::varTargetTableName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="128" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="$Project::varATTOMSourceVersion"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varTargetDatabaseName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="128" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container 2.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{658F6909-0BA6-4D62-872A-B7D88DF0F072}"
+          DTS:From="Package\Sequence Container 2\SC_CreateScriptforPurgingTable"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Sequence Container 2\SQL_CallPurgingProcedure" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container 2.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{CCC3761C-687F-4A8A-909E-6B494B26DCFD}"
+          DTS:From="Package\Sequence Container 2\SQL_CallPurgingProcedure"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Sequence Container 2\Sequence Container 1" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container 2.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{0318D72B-5153-43D6-9E07-534325BA446D}"
+          DTS:From="Package\Sequence Container 2\Sequence Container 1"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Sequence Container 2\Sequence Container" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SMT_VersionRefCompletionNotification 1"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{705B5FFC-AF21-4C2D-9892-65DA0CAB89FF}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SMT_VersionRefCompletionNotification 1"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="FromLine">@[User::varNotificationFrom]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="Subject">@[User::varSourceName]  + " VersionRef Package completed successfully at " + SUBSTRING(  (DT_STR,30,1252) GETDATE() ,1,22) + " for source version " + (DT_WSTR,10)@[User::varATTOMSourceVersion] + " on "+  @[System::MachineName]  + " Server "</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ToLine">@[User::varNotificationUsers]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{CCB8404D-044D-4BF6-85ED-6DBBC7EFA2D4}"
+          SendMailTask:From="ssingh3@rms.com"
+          SendMailTask:To="ssingh3@rms.com"
+          SendMailTask:Subject="ATTOM VersionRef Package completed successfully at 2018-09-17 09:37:49.66 for source version 2 on CAESDBPRD01 Server" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SMT_VersionRefStartNotification"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{54B18DB2-EA9E-46B5-8C9F-5392E37B6E47}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SMT_VersionRefStartNotification"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="FromLine">@[User::varNotificationFrom]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="Subject">@[User::varSourceName]  + " VersionRef Package started at " + SUBSTRING(  (DT_STR,30,1252) GETDATE() ,1,22)+ " for source version " + (DT_WSTR,10)@[User::varATTOMSourceVersion] + " on "+  @[System::MachineName]  + " Server. "</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ToLine">@[User::varNotificationUsers]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{CCB8404D-044D-4BF6-85ED-6DBBC7EFA2D4}"
+          SendMailTask:From="ssingh3@rms.com"
+          SendMailTask:To="ssingh3@rms.com"
+          SendMailTask:Subject="ATTOM VersionRef Package started at 2018-09-17 09:37:49.67 for source version 2 on CAESDBPRD01 Server." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_LogPostExecuteVersionRef"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{08B1CCED-3324-48B8-9D16-14B3315FA04A}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_LogPostExecuteVersionRef"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{DC93B1FB-7BDB-428E-BC68-77FE2F2270D5}"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="conES_CONFIG_DB">
+          <DTS:VariableValue
+            DTS:DataType="8"
+            xml:space="preserve"></DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">"  INSERT INTO WorkFlowEventLog (EventType, PackageName, TaskName, EventCode, EventDescription, PackageDuration, ContainerDuration, InsertCount, UpdateCount, DeleteCount, Host,[User],ExecutionDateTime,SourceCode,SourceName,RunId)
+VALUES (
+                                                                    'OnPostExecute',                                                                                                                                                                                                             --EventType
+                                                                    '"+ @[System::PackageName]  + "',                                                                                                     --PackageName
+                                                                   'Fidelity_SDR_RawData',                                                                                                       --Taskname
+                                                                    -1,                                                                       --EventCode
+                                                                    'Current package executed successfully',                                                                                                                                                              --EventDescription
+                                                                    " + (DT_STR, 6, 1252) DATEDIFF( "ss", @[System::StartTime] , GETDATE() )  + ",                                                                                   --PackageDuration
+                                                                    " + (DT_STR, 6, 1252) DATEDIFF( "ss", @[System::ContainerStartTime] , GETDATE() ) + ",                                                                     --ContainerDuration
+                                                                    " + (DT_STR, 20, 1252)  @[User::varInsertCount]  + ",                                                                                                                                          --InsertCount
+                                                                    " + (DT_STR, 20, 1252) @[User::varUpdateCount] + ",                                                                   --DeleteCount
+                                                                    " + (DT_STR, 4, 1252) @[User::varDeleteCount] + ",                                                                                                                                         --UpdateCount
+                                                                    '" + @[System::MachineName]  + "'                                                                                                    --Host
+
+,'" + @[System::UserName]  + "'
+,GETDATE()
+,'" +(DT_STR, 20, 1252) @[User::varSourceCode]  + "'
+,'" +@[User::varSourceName]  + "',"+(DT_STR, 4, 1252) @[User::varATTOMSourceVersion]+"
+)
+"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C6717D3A-2A7F-4027-BC10-C28FC7039A5D}"
+          SQLTask:SqlStatementSource="  INSERT INTO WorkFlowEventLog (EventType, PackageName, TaskName, EventCode, EventDescription, PackageDuration, ContainerDuration, InsertCount, UpdateCount, DeleteCount, Host,[User],ExecutionDateTime,SourceCode,SourceName,RunId)&#xA;VALUES (&#xA;                                                                    'OnPostExecute',                                                                                                                                                                                                             --EventType&#xA;                                                                    'ATTOM_SDR_VersionRef',                                                                                                     --PackageName&#xA;                                                                   'Fidelity_SDR_RawData',                                                                                                       --Taskname&#xA;                                                                    -1,                                                                       --EventCode&#xA;                                                                    'Current package executed successfully',                                                                                                                                                              --EventDescription&#xA;                                                                    17,                                                                                   --PackageDuration&#xA;                                                                    17,                                                                     --ContainerDuration&#xA;                                                                    0,                                                                                                                                          --InsertCount&#xA;                                                                    0,                                                                   --DeleteCount&#xA;                                                                    0,                                                                                                                                         --UpdateCount&#xA;                                                                    'CAESDBPRD01'                                                                                                    --Host&#xA;&#xA;,'LAB\ssingh1'&#xA;,GETDATE()&#xA;,'30'&#xA;,'ATTOM',2&#xA;)&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{09A47D78-90AD-4A63-9D4A-B262B969A928}"
+      DTS:From="Package\SMT_VersionRefStartNotification"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Sequence Container 2" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{104E8DA0-FB9A-49C5-A00A-9F11E35E2156}"
+      DTS:From="Package\Sequence Container 2"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\SQL_LogPostExecuteVersionRef" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{CB69479E-E5D5-466A-B8C9-19D9783F0EC4}"
+      DTS:From="Package\Sequence Container 2"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\SMT_VersionRefCompletionNotification 1" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{B5AE8AC1-67A7-4923-A616-F6A37519EDA3}"
+      DTS:EventID="4522029"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{BD91FAB0-35E2-4932-A9BA-46B770F5C4DC}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">0</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\SMT_RawDataFailureNotification"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{D56BE0CB-D33E-4500-A50E-4588EBBDEEAF}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SMT_RawDataFailureNotification"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="FromLine">@[User::varNotificationFrom]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[System::ErrorDescription]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">@[User::varSourceName]  + "RawData Package Failed at " +SUBSTRING(  (DT_STR,30,1252) GETDATE() ,1,22) + " for source version " + (DT_WSTR,10)@[User::varATTOMSourceVersion] + " on "+  @[System::MachineName]  + " Server. " + "Please check Error Log from Table: ES_LOG_DB.dbo.WorkFlowEventLog"</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::varNotificationUsers]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{CCB8404D-044D-4BF6-85ED-6DBBC7EFA2D4}"
+              SendMailTask:From="ssingh3@rms.com"
+              SendMailTask:To="ssingh3@rms.com"
+              SendMailTask:Subject="ATTOMRawData Package Failed at 2018-09-17 09:37:49.67 for source version 2 on CAESDBPRD01 Server. Please check Error Log from Table: ES_LOG_DB.dbo.WorkFlowEventLog" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\SQL_LogErrorVersionRef"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{BB73D6B3-5FD9-4247-825A-0A563938F023}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL_LogErrorVersionRef"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"IF('" + @[System::ErrorDescription]  + "' NOT LIKE 'SSIS%' ) INSERT INTO WorkFlowEventLog (EventType, PackageName, TaskName, EventCode, EventDescription, PackageDuration, ContainerDuration, InsertCount, UpdateCount, DeleteCount, Host,[User],ExecutionDateTime,SourceCode,SourceName,RunId)
+VALUES (
+	'OnError',										--EventType
+	'"+ @[System::PackageName]  + "',							--PackageName
+	'" + @[System::SourceName]  + "',							--Taskname
+	" + (DT_STR, 15, 1252) @[System::ErrorCode]  + ",					--EventCode
+	'" + @[System::ErrorDescription]  + "',							--EventDescription
+	" + (DT_STR, 6, 1252) DATEDIFF( "ss", @[System::StartTime] , GETDATE() )  + ",		--PackageDuration
+	" + (DT_STR, 6, 1252) DATEDIFF( "ss", @[System::ContainerStartTime] , GETDATE() ) + ", 	--ContainerDuration
+	" + (DT_STR, 20, 1252) @[User::varInsertCount]  + ", 						--InsertCount
+	" + (DT_STR, 20, 1252) @[User::varUpdateCount] + ", 					--DeleteCount
+	" + (DT_STR, 20, 1252) @[User::varDeleteCount] + ", 						--UpdateCount
+	'" + @[System::MachineName]  + "'							--Host
+
+,'" + @[System::CreatorName]  + "'
+,GETDATE()
+,'" +(DT_STR, 4, 1252) @[User::varSourceCode]  + "'
+,'" +@[User::varSourceName]  
+
+ + "',"+(DT_STR, 4, 1252) @[User::varATTOMSourceVersion]+"
+)
+"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C6717D3A-2A7F-4027-BC10-C28FC7039A5D}"
+              SQLTask:SqlStatementSource="IF('' NOT LIKE 'SSIS%' ) INSERT INTO WorkFlowEventLog (EventType, PackageName, TaskName, EventCode, EventDescription, PackageDuration, ContainerDuration, InsertCount, UpdateCount, DeleteCount, Host,[User],ExecutionDateTime,SourceCode,SourceName,RunId)&#xA;VALUES (&#xA;&#x9;'OnError',&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;--EventType&#xA;&#x9;'ATTOM_SDR_VersionRef',&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;--PackageName&#xA;&#x9;'',&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;--Taskname&#xA;&#x9;0,&#x9;&#x9;&#x9;&#x9;&#x9;--EventCode&#xA;&#x9;'',&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;--EventDescription&#xA;&#x9;17,&#x9;&#x9;--PackageDuration&#xA;&#x9;17, &#x9;--ContainerDuration&#xA;&#x9;0, &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;--InsertCount&#xA;&#x9;0, &#x9;&#x9;&#x9;&#x9;&#x9;--DeleteCount&#xA;&#x9;0, &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;--UpdateCount&#xA;&#x9;'CAESDBPRD01'&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;--Host&#xA;&#xA;,'RMS\asengar'&#xA;,GETDATE()&#xA;,'30'&#xA;,'ATTOM',2&#xA;)&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="181,44"
+          Id="Package\Sequence Container 2\SC_CreateScriptforPurgingTable"
+          TopLeft="248.037735849057,8.47169811320754" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container 2\Sequence Container\SQL_CallVersionRefuspMapDataT1"
+          TopLeft="348,84.0188679245283" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container 2\Sequence Container\SQL_CallVersionRefuspMapDataT2"
+          TopLeft="7.50943396226415,84.0188679245283" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container 2\Sequence Container\SQL_CallVersionRefuspMapDataT3"
+          TopLeft="177.735849056604,8.47169811320748" />
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="491,135"
+          Size="491,178"
+          Id="Package\Sequence Container 2\Sequence Container"
+          TopLeft="92.7169811320755,388.018867924528" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container 2\Sequence Container 1\SQL_CallVersionRefuspMapDataT4"
+          TopLeft="348,8.47169811320754" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container 2\Sequence Container 1\SQL_CallVersionRefuspMapDataT5"
+          TopLeft="177.735849056604,84.0188679245283" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container 2\Sequence Container 1\SQL_CallVersionRefuspMapDataT6"
+          TopLeft="518.22641509434,84.0188679245283" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container 2\Sequence Container 1\SQL_CallVersionRefuspMapDataT7"
+          TopLeft="7.50943396226415,84.0188679245283" />
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="662,135"
+          Size="662,178"
+          Id="Package\Sequence Container 2\Sequence Container 1"
+          TopLeft="7.58490566037736,171.792452830189" />
+        <NodeLayout
+          Size="181,44"
+          Id="Package\Sequence Container 2\SQL_CallPurgingProcedure"
+          TopLeft="248.037735849057,90.1320754716981" />
+        <EdgeLayout
+          Id="Package\Sequence Container 2.PrecedenceConstraints[Constraint]"
+          TopLeft="338.377358490566,52.3962264150943">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,37.7358490566038"
+              Start="0,0"
+              End="0,30.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container 2.PrecedenceConstraints[Constraint 1]"
+          TopLeft="338.377358490566,134.056603773585">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,37.7358490566038"
+              Start="0,0"
+              End="0,30.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container 2.PrecedenceConstraints[Constraint 2]"
+          TopLeft="338.377358490566,350.283018867925">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,37.7358490566038"
+              Start="0,0"
+              End="0,30.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="684,581"
+          Size="684,625"
+          Id="Package\Sequence Container 2"
+          TopLeft="168.292452830189,160.481132075472" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\SMT_VersionRefCompletionNotification 1"
+          TopLeft="5.5,809.537735849057" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\SMT_VersionRefStartNotification"
+          TopLeft="43.4245283018868,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\SQL_LogPostExecuteVersionRef"
+          TopLeft="192.179245283019,805.72641509434" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="111.311320754717,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="399.094339622641,111.056603773585"
+              Start="0,0"
+              End="399.094339622641,103.556603773585">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55.5094339622642" />
+                  <mssgle:LineSegment
+                    End="399.094339622641,55.5094339622642" />
+                  <mssgle:LineSegment
+                    End="399.094339622641,103.556603773585" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="406.632075471698,785.084905660377">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-146.566037735849,20.6415094339623"
+              Start="0,0"
+              End="-146.566037735849,13.1415094339623">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.3018867924528" />
+                  <mssgle:LineSegment
+                    End="-146.566037735849,10.3018867924528" />
+                  <mssgle:LineSegment
+                    End="-146.566037735849,13.1415094339623" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="344.367924528302,785.084905660377">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-270.981132075472,24.4528301886793"
+              Start="0,0"
+              End="-270.981132075472,16.9528301886793">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,6.11320754716985" />
+                  <mssgle:LineSegment
+                    End="-270.981132075472,6.11320754716985" />
+                  <mssgle:LineSegment
+                    End="-270.981132075472,16.9528301886793" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\SMT_RawDataFailureNotification"
+          TopLeft="5.5,109.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\SQL_LogErrorVersionRef"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

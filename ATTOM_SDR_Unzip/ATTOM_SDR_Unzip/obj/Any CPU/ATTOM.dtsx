@@ -1,0 +1,1970 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CheckpointFileName="E:\NEPP_SHARE\Support\Checkpoint_ATTOM.txt"
+  DTS:CheckpointUsage="1"
+  DTS:CreationDate="5/15/2014 10:30:22 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="NOLT0586"
+  DTS:CreatorName="RMS\ssingh3"
+  DTS:DTSID="{53D2B27F-F5FE-4545-9615-02390275B509}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.7001.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="ATTOM"
+  DTS:PackageType="5"
+  DTS:SaveCheckpoints="True"
+  DTS:VersionBuild="93"
+  DTS:VersionGUID="{0EF589FD-324C-4D04-A7BB-6B62F2664214}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[mailca.rms.com]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{7137D880-7AA5-4945-AAB0-512623431D28}"
+      DTS:ObjectName="mailca.rms.com">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=mailca.rms.com;UseWindowsAuthentication=False;EnableSsl=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A1AD33DA-7071-4DEE-851A-8483F3FE7F42}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::varATTOMSourceVersion]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varATTOMSourceVersion">
+      <DTS:VariableValue
+        DTS:DataType="3">4</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{46C0E7E1-EB23-4340-BEB4-7F358803E0D1}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::varNotificationFrom]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varNotificationFrom">
+      <DTS:VariableValue
+        DTS:DataType="8">jitendra.sharma@rms.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7D2D00B6-BFE0-460B-997A-08CF2203B27C}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::varNotificationUsers]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varNotificationUsers">
+      <DTS:VariableValue
+        DTS:DataType="8">jitendra.sharma@rms.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3D60D888-FBFE-4508-87E5-B9FDE921CC71}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::varOutputDrive] +&quot;NEPP_SHARE\\&quot;+ @[$Project::varSourceName] +&quot;\\Output\\v&quot;+ ((DT_STR, 255, 1251) @[$Project::varATTOMSourceVersion] )+&quot;\\&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varOutputPath">
+      <DTS:VariableValue
+        DTS:DataType="8">E:\NEPP_SHARE\ATTOM\Output\v4\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4784AA80-76E5-4AC3-A54A-A5284197F5B3}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::varSourceName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSourceName">
+      <DTS:VariableValue
+        DTS:DataType="8">ATTOM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{30395B35-F334-4E11-B708-9127A4423B50}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::varOutputDrive]+ &quot;NEPP_SHARE\\Support\\&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSupportPath">
+      <DTS:VariableValue
+        DTS:DataType="8">E:\NEPP_SHARE\Support\</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:PropertyExpression
+    DTS:Name="CheckpointFileName">@[User::varSupportPath]+ "Checkpoint_"+ @[User::varSourceName] +".txt"</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="PackagePassword">@[$Project::varPassword]</DTS:PropertyExpression>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\EPT_BaseData"
+      DTS:CreationName="SSIS.ExecutePackageTask.3"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{79662f83-c532-41cb-a738-b5441619a11c}"
+      DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EPT_BaseData"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\EPT_BaseData.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{219223ca-f7e3-423b-9acb-8ad051889b64}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{1779ef27-7d33-40ad-9023-b76ca51deff5}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\EPT_BaseData.EventHandlers[OnError]\SMT_GeocodeOutputAddressFailureNotification"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Send Mail Task"
+              DTS:DTSID="{82280435-1967-4617-aebf-47f5b5c7a557}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:FailPackageOnFailure="True"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SMT_GeocodeOutputAddressFailureNotification"
+              DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="FromLine">@[User::varNotificationFrom]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="MessageSource">@[System::ErrorDescription]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="Subject">@[User::varSourceName]  + " BaseData Package Failed at " + SUBSTRING(  (DT_STR,30,1252) GETDATE() ,1,22) + " for source version " + (DT_STR,10,1252)@[User::varATTOMSourceVersion] + " on "+  @[System::MachineName]  + " Server "</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="ToLine">@[User::varNotificationUsers]</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SendMailTask:SendMailTaskData
+                  SendMailTask:SMTPServer="{6E0B5676-2AC0-447F-A147-3E9604F0883A}"
+                  SendMailTask:From="jitendra.sharma@rms.com"
+                  SendMailTask:To="jitendra.sharma@rms.com"
+                  SendMailTask:Subject="ATTOM BaseData Package Failed at 2019-02-19 23:39:39.31 for source version 4 on CA1MDESDB05 Server" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>ATTOM_SDR_BaseData.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EPT_DataFlag"
+      DTS:CreationName="SSIS.ExecutePackageTask.3"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{a5529d6e-ecb0-45b4-9b5f-9e37847ec6f1}"
+      DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EPT_DataFlag"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\EPT_DataFlag.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{612cab2e-3092-4031-8a34-7cbdd3df5375}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{b88dd8f2-eec0-4987-9320-92484849de6e}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\EPT_DataFlag.EventHandlers[OnError]\SMT_GeocodeOutputAddressFailureNotification"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Send Mail Task"
+              DTS:DTSID="{b1917d0a-5c8f-42bf-9ee7-f57c4e96348c}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:FailPackageOnFailure="True"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SMT_GeocodeOutputAddressFailureNotification"
+              DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="FromLine">@[User::varNotificationFrom]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="MessageSource">@[System::ErrorDescription]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="Subject">@[User::varSourceName]  + " DataFlag Package Failed at " + SUBSTRING(  (DT_STR,30,1252) GETDATE() ,1,22) + " for source version " + (DT_STR,10,1252)@[User::varATTOMSourceVersion] + " on "+  @[System::MachineName]  + " Server "</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="ToLine">@[User::varNotificationUsers]</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SendMailTask:SendMailTaskData
+                  SendMailTask:SMTPServer="{6E0B5676-2AC0-447F-A147-3E9604F0883A}"
+                  SendMailTask:From="jitendra.sharma@rms.com"
+                  SendMailTask:To="jitendra.sharma@rms.com"
+                  SendMailTask:Subject="ATTOM DataFlag Package Failed at 2019-02-19 23:39:39.32 for source version 4 on CA1MDESDB05 Server" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>ATTOM_SDR_DataFlag.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EPT_GeocodeOutputAddress"
+      DTS:CreationName="SSIS.ExecutePackageTask.3"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{7a381b39-c7a9-4875-bba7-dbf2735ad27f}"
+      DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EPT_GeocodeOutputAddress"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\EPT_GeocodeOutputAddress.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{daa598cd-ae30-4371-8693-9767bd50e3fb}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{73238da3-b615-48b4-bfc7-cd450944708d}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\EPT_GeocodeOutputAddress.EventHandlers[OnError]\SMT_GeocodeOutputAddressFailureNotification"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Send Mail Task"
+              DTS:DTSID="{c4c2c6cb-213a-4d17-a8f8-0f7e8efed36f}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:FailPackageOnFailure="True"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SMT_GeocodeOutputAddressFailureNotification"
+              DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="FromLine">@[User::varNotificationFrom]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="MessageSource">@[System::ErrorDescription]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="Subject">@[User::varSourceName]  + "GeocodeOutputAddress Package Failed at " + SUBSTRING(  (DT_STR,30,1252) GETDATE() ,1,22) + " for source version " + (DT_STR,10,1252)@[User::varATTOMSourceVersion] + " on "+  @[System::MachineName]  + " Server "</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="ToLine">@[User::varNotificationUsers]</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SendMailTask:SendMailTaskData
+                  SendMailTask:SMTPServer="{7137D880-7AA5-4945-AAB0-512623431D28}"
+                  SendMailTask:From="jitendra.sharma@rms.com"
+                  SendMailTask:To="jitendra.sharma@rms.com"
+                  SendMailTask:Subject="ATTOMGeocodeOutputAddress Package Failed at 2019-02-19 23:39:39.32 for source version 4 on CA1MDESDB05 Server" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>ATTOM_SDR_GeocodeOutputAddress.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EPT_GeocodeStage"
+      DTS:CreationName="SSIS.ExecutePackageTask.3"
+      DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{d67e15c2-6b8f-4e8b-834f-ec72bd8dfd3e}"
+      DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EPT_GeocodeStage"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\EPT_GeocodeStage.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{0c4a725d-0296-429b-9482-edd72e3355af}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{e282a855-123b-44f5-ab1d-9ae9ed85cf09}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\EPT_GeocodeStage.EventHandlers[OnError]\SMT_GeocodeStageFailureNotification"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Send Mail Task"
+              DTS:DTSID="{fea74344-9c57-4af3-b080-df671bb48907}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:FailPackageOnFailure="True"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SMT_GeocodeStageFailureNotification"
+              DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="FromLine">@[User::varNotificationFrom]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="MessageSource">@[System::ErrorDescription]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="Subject">@[User::varSourceName]  + "GeocodeStage Package Failed at " + SUBSTRING(  (DT_STR,30,1252) GETDATE() ,1,22) + " for source version " + (DT_STR,10,1252)@[User::varATTOMSourceVersion] + " on "+  @[System::MachineName]  + " Server "</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="ToLine">@[User::varNotificationUsers]</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SendMailTask:SendMailTaskData
+                  SendMailTask:SMTPServer="{7137D880-7AA5-4945-AAB0-512623431D28}"
+                  SendMailTask:From="jitendra.sharma@rms.com"
+                  SendMailTask:To="jitendra.sharma@rms.com"
+                  SendMailTask:Subject="ATTOMGeocodeStage Package Failed at 2019-02-19 23:39:39.33 for source version 4 on CA1MDESDB05 Server" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Fidelity_SDR_Geostage.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EPT_Inputaddress"
+      DTS:CreationName="SSIS.ExecutePackageTask.3"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{133b8705-e245-45f7-984c-889498283df2}"
+      DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EPT_Inputaddress"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\EPT_Inputaddress.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{c30d3cbc-65b7-4b19-8eec-c2983185c5ab}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{a46f2417-e4f5-40b4-b840-338cbea94d11}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">0</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\EPT_Inputaddress.EventHandlers[OnError]\SMT_InputaddressFailureNotification"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Send Mail Task"
+              DTS:DTSID="{8c0e4217-1bac-454b-9772-3769236b9484}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SMT_InputaddressFailureNotification"
+              DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="FromLine">@[User::varNotificationFrom]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="MessageSource">@[System::ErrorDescription]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="Subject">@[User::varSourceName]  + " Inputaddress Package failed at " + SUBSTRING(  (DT_STR,30,1252) GETDATE() ,1,22)+ " for source version " + (DT_WSTR,10)@[User::varATTOMSourceVersion] + " on "+  @[System::MachineName]  + " Server. "</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="ToLine">@[User::varNotificationUsers]</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SendMailTask:SendMailTaskData
+                  SendMailTask:SMTPServer="{7137D880-7AA5-4945-AAB0-512623431D28}"
+                  SendMailTask:From="jitendra.sharma@rms.com"
+                  SendMailTask:To="jitendra.sharma@rms.com"
+                  SendMailTask:Subject="ATTOM Inputaddress Package failed at 2019-02-19 23:39:39.34 for source version 4 on CA1MDESDB05 Server." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>ATTOM_SDR_InputAddress.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EPT_RawData"
+      DTS:CreationName="SSIS.ExecutePackageTask.3"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{35ba5c50-cd04-4ed3-898b-24d0bb4a57fa}"
+      DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EPT_RawData"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\EPT_RawData.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{1831e851-1dd4-4bc6-86de-310ff9e2d287}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{1fee6f63-ea0c-44b9-8743-6b1a049d7af6}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\EPT_RawData.EventHandlers[OnError]\SMT_RawDataFailureNotification"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Send Mail Task"
+              DTS:DTSID="{ae37dc50-e71a-468d-a749-f939494bceaa}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SMT_RawDataFailureNotification"
+              DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="FromLine">@[User::varNotificationFrom]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="MessageSource">@[System::ErrorDescription]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="Subject">@[User::varSourceName]  + " RawData Package failed at " + (DT_STR, 50, 1252) @[System::ContainerStartTime] + " for source version " + (DT_WSTR,10)@[User::varATTOMSourceVersion] + " on "+  @[System::MachineName]  + " Server. "</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="ToLine">@[User::varNotificationUsers]</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SendMailTask:SendMailTaskData
+                  SendMailTask:SMTPServer="{7137D880-7AA5-4945-AAB0-512623431D28}"
+                  SendMailTask:From="jitendra.sharma@rms.com"
+                  SendMailTask:To="jitendra.sharma@rms.com"
+                  SendMailTask:Subject="ATTOM RawData Package failed at 2/19/2019 11:39:39 PM for source version 4 on CA1MDESDB05 Server." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>ATTOM_SDR_RawData.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EPT_Stage"
+      DTS:CreationName="SSIS.ExecutePackageTask.3"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{6cbff90f-de0d-429f-9f6f-07670613ca89}"
+      DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EPT_Stage"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\EPT_Stage.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{00633753-0f23-4fa0-9941-63bb9d9ea113}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{ecee83ec-fb8a-41b9-b487-a2d9e156aea2}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\EPT_Stage.EventHandlers[OnError]\SMT_StageFailureNotification"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Send Mail Task"
+              DTS:DTSID="{e8f52d0f-9d38-4479-a470-b28a71ca35df}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SMT_StageFailureNotification"
+              DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="FromLine">@[User::varNotificationFrom]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="MessageSource">@[System::ErrorDescription]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="Subject">@[User::varSourceName]  + " Validation Package failed at " +SUBSTRING(  (DT_STR,30,1252) GETDATE() ,1,22) + " for source version " + (DT_WSTR,10)@[User::varATTOMSourceVersion] + " on "+  @[System::MachineName]  + " Server. "</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="ToLine">@[User::varNotificationUsers]</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SendMailTask:SendMailTaskData
+                  SendMailTask:SMTPServer="{7137D880-7AA5-4945-AAB0-512623431D28}"
+                  SendMailTask:From="jitendra.sharma@rms.com"
+                  SendMailTask:To="jitendra.sharma@rms.com"
+                  SendMailTask:Subject="ATTOM Validation Package failed at 2019-02-19 23:39:39.35 for source version 4 on CA1MDESDB05 Server." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>ATTOM_SDR_Stage.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EPT_Unzip"
+      DTS:CreationName="SSIS.ExecutePackageTask.3"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{f60f886c-f44e-4124-959d-1f294baa4ef4}"
+      DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EPT_Unzip"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\EPT_Unzip.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{5ff8eaa6-07d0-4f2e-a8a0-6f82deb5142f}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{3bbc9a75-4684-47a7-b693-1fc349e0131d}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\EPT_Unzip.EventHandlers[OnError]\SMT_UnzipFailureNotification"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Send Mail Task"
+              DTS:DTSID="{80207fb3-33b3-4702-b3be-ab7390480006}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:FailPackageOnFailure="True"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SMT_UnzipFailureNotification"
+              DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="FromLine">@[User::varNotificationFrom]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="MessageSource">@[System::ErrorDescription]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="Subject">@[User::varSourceName]  + "Unzipping Package Failed at " + SUBSTRING(  (DT_STR,30,1252) GETDATE() ,1,22)+ " for source version " + (DT_WSTR,10)@[User::varATTOMSourceVersion] + " on "+  @[System::MachineName]  + " Server "</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="ToLine">@[User::varNotificationUsers]</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SendMailTask:SendMailTaskData
+                  SendMailTask:SMTPServer="{7137D880-7AA5-4945-AAB0-512623431D28}"
+                  SendMailTask:From="jitendra.sharma@rms.com"
+                  SendMailTask:To="jitendra.sharma@rms.com"
+                  SendMailTask:Subject="ATTOMUnzipping Package Failed at 2019-02-19 23:39:39.36 for source version 4 on CA1MDESDB05 Server" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>ATTOM_SDR_Unzip.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EPT_Validation"
+      DTS:CreationName="SSIS.ExecutePackageTask.3"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{23d7cdaa-e0a7-416c-866f-497d9b69201e}"
+      DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EPT_Validation"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\EPT_Validation.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{4076e98e-1912-4676-b21b-560d6854a387}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{795aeae1-4aa8-4dac-9e9e-6279c2c4d6c4}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\EPT_Validation.EventHandlers[OnError]\SMT_ValidationFailureNotification"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Send Mail Task"
+              DTS:DTSID="{c87c9996-2e76-42a5-848e-a3f37f8c5bfc}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SMT_ValidationFailureNotification"
+              DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="FromLine">@[User::varNotificationFrom]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="MessageSource">@[System::ErrorDescription]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="Subject">@[User::varSourceName]  + " Validation Package failed at " + SUBSTRING(  (DT_STR,30,1252) GETDATE() ,1,22) + " for source version " + (DT_WSTR,10)@[User::varATTOMSourceVersion] + " on "+  @[System::MachineName]  + " Server. "</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="ToLine">@[User::varNotificationUsers]</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SendMailTask:SendMailTaskData
+                  SendMailTask:SMTPServer="{7137D880-7AA5-4945-AAB0-512623431D28}"
+                  SendMailTask:From="jitendra.sharma@rms.com"
+                  SendMailTask:To="jitendra.sharma@rms.com"
+                  SendMailTask:Subject="ATTOM Validation Package failed at 2019-02-19 23:39:39.37 for source version 4 on CA1MDESDB05 Server." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>ATTOM_SDR_Validation.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EPT_VersionRef"
+      DTS:CreationName="SSIS.ExecutePackageTask.3"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{66e306ee-74aa-499b-b9de-79028f99da2c}"
+      DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EPT_VersionRef"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\EPT_VersionRef.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{55643b76-de93-4480-b51f-9c728016ac4b}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{1caa9f4d-5d05-4864-8845-93fa86cf47a8}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\EPT_VersionRef.EventHandlers[OnError]\SMT_VersionRefFailureNotification"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Send Mail Task"
+              DTS:DTSID="{782c7812-9753-4371-9fb4-5197892816ab}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SMT_VersionRefFailureNotification"
+              DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="FromLine">@[User::varNotificationFrom]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="MessageSource">@[System::ErrorDescription]</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="Subject">@[User::varSourceName]  + " VersionRef Package failed at " + SUBSTRING(  (DT_STR,30,1252) GETDATE() ,1,22)+ " for source version " + (DT_WSTR,10)@[User::varATTOMSourceVersion] + " on "+  @[System::MachineName]  + " Server. "</DTS:PropertyExpression>
+              <DTS:PropertyExpression
+                DTS:Name="ToLine">@[User::varNotificationUsers]</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SendMailTask:SendMailTaskData
+                  SendMailTask:SMTPServer="{7137D880-7AA5-4945-AAB0-512623431D28}"
+                  SendMailTask:From="jitendra.sharma@rms.com"
+                  SendMailTask:To="jitendra.sharma@rms.com"
+                  SendMailTask:Subject="ATTOM VersionRef Package failed at 2019-02-19 23:39:39.37 for source version 4 on CA1MDESDB05 Server." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>ATTOM_SDR_VersionRef.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SMT_PackageCompletionNotification"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{5e14c724-89cb-4121-8d04-a5444a110ae4}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SMT_PackageCompletionNotification"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="FromLine">@[User::varNotificationFrom]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="Subject">@[User::varSourceName]  + " Package completed at " +SUBSTRING(  (DT_STR,30,1252) GETDATE() ,1,22) + " for source version " + (DT_WSTR,10)@[User::varATTOMSourceVersion] + " on "+  @[System::MachineName]  + " Server "</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ToLine">@[User::varNotificationUsers]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{7137D880-7AA5-4945-AAB0-512623431D28}"
+          SendMailTask:From="jitendra.sharma@rms.com"
+          SendMailTask:To="jitendra.sharma@rms.com"
+          SendMailTask:Subject="ATTOM Package completed at 2019-02-19 23:39:39.38 for source version 4 on CA1MDESDB05 Server"
+          SendMailTask:Priority="High" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SMT_StartNotification"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Send Mail Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{e14d2c8e-a454-41c6-a840-7eef5ae1b750}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SMT_StartNotification"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="FromLine">@[User::varNotificationFrom]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="Subject">@[User::varSourceName]  + " Package started at " + SUBSTRING(  (DT_STR,30,1252) GETDATE() ,1,22)+ " for source version " + (DT_WSTR,10)@[User::varATTOMSourceVersion] + " on "+  @[System::MachineName]  + " Server "</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ToLine">@[User::varNotificationUsers]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{7137D880-7AA5-4945-AAB0-512623431D28}"
+          SendMailTask:From="jitendra.sharma@rms.com"
+          SendMailTask:To="jitendra.sharma@rms.com"
+          SendMailTask:Subject="ATTOM Package started at 2019-02-19 23:39:39.39 for source version 4 on CA1MDESDB05 Server" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{01329b08-42ef-4963-b7a9-7307a49f3f93}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Project::varATTOMPkgUnzip]==1"
+      DTS:From="Package\SMT_StartNotification"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\EPT_Unzip" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{9022ad0b-b96b-4d03-8bfe-641ef9a6218b}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Project::varATTOMPkgStage]==1"
+      DTS:From="Package\EPT_Validation"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\EPT_Stage" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{774c398a-0f87-49b8-97e9-04561264bcc6}"
+      DTS:From="Package\EPT_VersionRef"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
+      DTS:To="Package\SMT_PackageCompletionNotification" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 11]"
+      DTS:CreationName=""
+      DTS:DTSID="{c83f833d-b17b-4816-bfe2-9ba65be01aa5}"
+      DTS:EvalOp="3"
+      DTS:Expression="@varATTOMPkgUnzip==0 &amp;&amp; @varATTOMPkgValidation==0 &amp;&amp; @varATTOMPkgStage==0 &amp;&amp; @varATTOMPkgInputaddress==0 &amp;&amp;  @[$Project::varATTOMPkgGeocodeStage]==1"
+      DTS:From="Package\SMT_StartNotification"
+      DTS:ObjectName="Constraint 11"
+      DTS:To="Package\EPT_GeocodeStage" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 12]"
+      DTS:CreationName=""
+      DTS:DTSID="{ea76cd71-4576-4a7e-8a46-892324c03b0a}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Project::varATTOMPkgUnzip] ==0 &amp;&amp; @[$Project::varATTOMPkgValidation] ==1"
+      DTS:From="Package\SMT_StartNotification"
+      DTS:ObjectName="Constraint 12"
+      DTS:To="Package\EPT_Validation" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 13]"
+      DTS:CreationName=""
+      DTS:DTSID="{3361606c-4c81-4574-93de-817f8e520023}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Project::varATTOMPkgUnzip] ==0 &amp;&amp; @[$Project::varATTOMPkgValidation] ==0 &amp;&amp; @[$Project::varATTOMPkgStage] ==1"
+      DTS:From="Package\SMT_StartNotification"
+      DTS:ObjectName="Constraint 13"
+      DTS:To="Package\EPT_Stage" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 14]"
+      DTS:CreationName=""
+      DTS:DTSID="{5ae9d211-73a6-4096-9524-a49efe847c2a}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Project::varATTOMPkgDataFlag]==1"
+      DTS:From="Package\EPT_BaseData"
+      DTS:ObjectName="Constraint 14"
+      DTS:To="Package\EPT_DataFlag" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 15]"
+      DTS:CreationName=""
+      DTS:DTSID="{cab9ff00-792f-45a1-8a83-ba27ffbc4ff7}"
+      DTS:From="Package\EPT_DataFlag"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 15"
+      DTS:To="Package\SMT_PackageCompletionNotification" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 16]"
+      DTS:CreationName=""
+      DTS:DTSID="{c7100620-6629-48f7-979f-6ef29bfe71b0}"
+      DTS:EvalOp="3"
+      DTS:Expression="@varATTOMPkgUnzip==0 &amp;&amp; @varATTOMPkgValidation==0 &amp;&amp; @varATTOMPkgStage==0 &amp;&amp; @varATTOMPkgInputaddress==0 &amp;&amp;  @[$Project::varATTOMPkgGeocodeStage]==0 &amp;&amp;  @[$Project::varATTOMPkgGeocodeOutputAddress]==0 &amp;&amp; @[$Project::varATTOMPkgBaseData]==1"
+      DTS:From="Package\SMT_StartNotification"
+      DTS:ObjectName="Constraint 16"
+      DTS:To="Package\EPT_BaseData" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 17]"
+      DTS:CreationName=""
+      DTS:DTSID="{bbae517a-9e17-42a1-9c65-73d25e1eafe3}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Project::varATTOMPkgUnzip] ==0 &amp;&amp; @[$Project::varATTOMPkgValidation] ==0 &amp;&amp; @[$Project::varATTOMPkgStage] ==0 &amp;&amp; @[$Project::varATTOMPkgRawData] ==1"
+      DTS:From="Package\SMT_StartNotification"
+      DTS:ObjectName="Constraint 17"
+      DTS:To="Package\EPT_RawData" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 18]"
+      DTS:CreationName=""
+      DTS:DTSID="{77ae4aed-7c35-4a28-911f-becf5f91d40b}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Project::varATTOMPkgUnzip] ==0 &amp;&amp; @[$Project::varATTOMPkgValidation] ==0 &amp;&amp; @[$Project::varATTOMPkgStage] ==0 &amp;&amp;  @[$Project::varATTOMPkgVersionRef]==1"
+      DTS:From="Package\SMT_StartNotification"
+      DTS:ObjectName="Constraint 18"
+      DTS:To="Package\EPT_VersionRef" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 19]"
+      DTS:CreationName=""
+      DTS:DTSID="{e766d6d5-2135-4041-bfb9-1c4b30415721}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Project::varATTOMPkgUnzip] ==0 &amp;&amp; @[$Project::varATTOMPkgValidation] ==0 &amp;&amp; @[$Project::varATTOMPkgStage] ==0 &amp;&amp; @[$Project::varATTOMPkgInputaddress] ==1"
+      DTS:From="Package\SMT_StartNotification"
+      DTS:ObjectName="Constraint 19"
+      DTS:To="Package\EPT_Inputaddress" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{90dd53e3-c2f0-4e5c-8e5e-88dedff6af1d}"
+      DTS:From="Package\EPT_RawData"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\SMT_PackageCompletionNotification" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 20]"
+      DTS:CreationName=""
+      DTS:DTSID="{fe451f8d-35ce-4158-98d9-fcb015298f41}"
+      DTS:EvalOp="3"
+      DTS:Expression="@varATTOMPkgUnzip==0 &amp;&amp; @varATTOMPkgValidation==0 &amp;&amp; @varATTOMPkgStage==0 &amp;&amp; @varATTOMPkgInputaddress==0 &amp;&amp;  @[$Project::varATTOMPkgGeocodeStage]==0 &amp;&amp;  @[$Project::varATTOMPkgGeocodeOutputAddress]==0 &amp;&amp; @[$Project::varATTOMPkgBaseData]==0 &amp;&amp; @[$Project::varATTOMPkgDataFlag]==1"
+      DTS:From="Package\SMT_StartNotification"
+      DTS:ObjectName="Constraint 20"
+      DTS:To="Package\EPT_DataFlag" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{5f26dc3b-83f6-4cf2-8ab0-199c2292b16f}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Project::varATTOMPkgRawData] ==1"
+      DTS:From="Package\EPT_Stage"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\EPT_RawData" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{9386313a-2c04-4725-911c-37b01fb55215}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Project::varATTOMPkgInputaddress] ==1"
+      DTS:From="Package\EPT_Stage"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\EPT_Inputaddress" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{f83a7c9c-1259-4aa6-83d0-f316206318cf}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Project::varATTOMPkgValidation] ==1"
+      DTS:From="Package\EPT_Unzip"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\EPT_Validation" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{52af01eb-cd78-41b3-b02d-1b9556cfff81}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Project::varATTOMPkgGeocodeOutputAddress]==1"
+      DTS:From="Package\EPT_GeocodeStage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\EPT_GeocodeOutputAddress" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{8c82c021-5c9f-4e60-87f2-0235ef179ff9}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Project::varATTOMPkgVersionRef]==1"
+      DTS:From="Package\EPT_Stage"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\EPT_VersionRef" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{dc2adc69-b9a2-466c-840c-1540e256b563}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Project::varATTOMPkgBaseData]==1"
+      DTS:From="Package\EPT_GeocodeOutputAddress"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\EPT_BaseData" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{c26ba501-dd96-4674-9d9b-647d3230b55d}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Project::varATTOMPkgGeocodeStage]==1"
+      DTS:From="Package\EPT_Inputaddress"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\EPT_GeocodeStage" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="149,42"
+          Id="Package\EPT_BaseData"
+          TopLeft="668,725.5" />
+        <NodeLayout
+          Size="146,42"
+          Id="Package\EPT_DataFlag"
+          TopLeft="533.5,827.5" />
+        <NodeLayout
+          Size="215,42"
+          Id="Package\EPT_GeocodeOutputAddress"
+          TopLeft="730,623.5" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\EPT_GeocodeStage"
+          TopLeft="729.5,521.5" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\EPT_Inputaddress"
+          TopLeft="792,419.5" />
+        <NodeLayout
+          Size="147,42"
+          Id="Package\EPT_RawData"
+          TopLeft="1020,419.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\EPT_Stage"
+          TopLeft="1102.5,315.5" />
+        <NodeLayout
+          Size="131,42"
+          Id="Package\EPT_Unzip"
+          TopLeft="978,109.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\EPT_Validation"
+          TopLeft="915.5,211.5" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\EPT_VersionRef"
+          TopLeft="1228,419.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\SMT_PackageCompletionNotification"
+          TopLeft="1025.5,1230.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\SMT_StartNotification"
+          TopLeft="786.5,5.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="867.3,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="176.2,60"
+              Start="0,0"
+              End="176.2,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.8831168831169" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.8831168831169"
+                    Point2="0,26.8831168831169"
+                    Point3="4,26.8831168831169" />
+                  <mssgle:LineSegment
+                    End="172.2,26.8831168831169" />
+                  <mssgle:CubicBezierSegment
+                    Point1="172.2,26.8831168831169"
+                    Point2="176.2,26.8831168831169"
+                    Point3="176.2,30.8831168831169" />
+                  <mssgle:LineSegment
+                    End="176.2,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="80.1,31.8831168831169,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="983.5,255.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="208.333333333333,60"
+              Start="0,0"
+              End="208.333333333333,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5813953488372" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.5813953488372"
+                    Point2="0,35.5813953488372"
+                    Point3="4,35.5813953488372" />
+                  <mssgle:LineSegment
+                    End="204.333333333333,35.5813953488372" />
+                  <mssgle:CubicBezierSegment
+                    Point1="204.333333333333,35.5813953488372"
+                    Point2="208.333333333333,35.5813953488372"
+                    Point3="208.333333333333,39.5813953488372" />
+                  <mssgle:LineSegment
+                    End="208.333333333333,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="96.1666666666666,40.5813953488372,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="1305.5,461.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-180,769"
+              Start="0,0"
+              End="-180,761.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,498.807692307692" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,498.807692307692"
+                    Point2="0,502.807692307692"
+                    Point3="-4,502.807692307692" />
+                  <mssgle:LineSegment
+                    End="-176,502.807692307692" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-176,502.807692307692"
+                    Point2="-180,502.807692307692"
+                    Point3="-180,506.807692307692" />
+                  <mssgle:LineSegment
+                    End="-180,761.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 11]"
+          TopLeft="828.9,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-40.7333333333333,472"
+              Start="0,0"
+              End="-40.7333333333333,464.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,221.400852133827" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,221.400852133827"
+                    Point2="0,225.400852133827"
+                    Point3="-4,225.400852133827" />
+                  <mssgle:LineSegment
+                    End="-36.7333333333333,225.400852133827" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-36.7333333333333,225.400852133827"
+                    Point2="-40.7333333333333,225.400852133827"
+                    Point3="-40.7333333333333,229.400852133827" />
+                  <mssgle:LineSegment
+                    End="-40.7333333333333,464.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-28.3666666666667,230.400852133827,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 12]"
+          TopLeft="854.5,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="107.666666666667,162"
+              Start="0,0"
+              End="107.666666666667,154.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,92.0697674418605" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,92.0697674418605"
+                    Point2="0,96.0697674418605"
+                    Point3="4,96.0697674418605" />
+                  <mssgle:LineSegment
+                    End="103.666666666667,96.0697674418605" />
+                  <mssgle:CubicBezierSegment
+                    Point1="103.666666666667,96.0697674418605"
+                    Point2="107.666666666667,96.0697674418605"
+                    Point3="107.666666666667,100.069767441861" />
+                  <mssgle:LineSegment
+                    End="107.666666666667,154.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="45.8333333333333,101.069767441861,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 13]"
+          TopLeft="892.9,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="256.266666666667,266"
+              Start="0,0"
+              End="256.266666666667,258.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,99.2377622377622" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,99.2377622377622"
+                    Point2="0,103.237762237762"
+                    Point3="4,103.237762237762" />
+                  <mssgle:LineSegment
+                    End="252.266666666667,103.237762237762" />
+                  <mssgle:CubicBezierSegment
+                    Point1="252.266666666667,103.237762237762"
+                    Point2="256.266666666667,103.237762237762"
+                    Point3="256.266666666667,107.237762237762" />
+                  <mssgle:LineSegment
+                    End="256.266666666667,258.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="120.133333333333,108.237762237762,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 14]"
+          TopLeft="742.5,767.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-159,60"
+              Start="0,0"
+              End="-159,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.609756097561" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.609756097561"
+                    Point2="0,35.609756097561"
+                    Point3="-4,35.609756097561" />
+                  <mssgle:LineSegment
+                    End="-155,35.609756097561" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-155,35.609756097561"
+                    Point2="-159,35.609756097561"
+                    Point3="-159,39.609756097561" />
+                  <mssgle:LineSegment
+                    End="-159,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-87.5,40.609756097561,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 15]"
+          TopLeft="606.5,869.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="455,361"
+              Start="0,0"
+              End="455,353.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,232.038461538462" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,232.038461538462"
+                    Point2="0,236.038461538462"
+                    Point3="4,236.038461538462" />
+                  <mssgle:LineSegment
+                    End="451,236.038461538462" />
+                  <mssgle:CubicBezierSegment
+                    Point1="451,236.038461538462"
+                    Point2="455,236.038461538462"
+                    Point3="455,240.038461538462" />
+                  <mssgle:LineSegment
+                    End="455,353.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 16]"
+          TopLeft="816.1,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-50.0999999999999,676"
+              Start="0,0"
+              End="-50.0999999999999,668.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,258.764436296975" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,258.764436296975"
+                    Point2="0,262.764436296975"
+                    Point3="-4,262.764436296975" />
+                  <mssgle:LineSegment
+                    End="-46.0999999999999,262.764436296975" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-46.0999999999999,262.764436296975"
+                    Point2="-50.0999999999999,262.764436296975"
+                    Point3="-50.0999999999999,266.764436296975" />
+                  <mssgle:LineSegment
+                    End="-50.0999999999999,668.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-33.05,267.764436296975,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 17]"
+          TopLeft="880.1,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="190.233333333333,370"
+              Start="0,0"
+              End="190.233333333333,362.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,172.335256815448" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,172.335256815448"
+                    Point2="0,176.335256815448"
+                    Point3="4,176.335256815448" />
+                  <mssgle:LineSegment
+                    End="186.233333333333,176.335256815448" />
+                  <mssgle:CubicBezierSegment
+                    Point1="186.233333333333,176.335256815448"
+                    Point2="190.233333333333,176.335256815448"
+                    Point3="190.233333333333,180.335256815448" />
+                  <mssgle:LineSegment
+                    End="190.233333333333,362.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="87.1166666666666,181.335256815448,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 18]"
+          TopLeft="905.7,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="375.3,370"
+              Start="0,0"
+              End="375.3,362.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,94.1940481043618" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,94.1940481043618"
+                    Point2="0,98.1940481043618"
+                    Point3="4,98.1940481043618" />
+                  <mssgle:LineSegment
+                    End="371.3,98.1940481043618" />
+                  <mssgle:CubicBezierSegment
+                    Point1="371.3,98.1940481043618"
+                    Point2="375.3,98.1940481043618"
+                    Point3="375.3,102.194048104362" />
+                  <mssgle:LineSegment
+                    End="375.3,362.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="179.65,103.194048104362,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 19]"
+          TopLeft="845.35,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,370"
+              Start="0,0"
+              End="0,362.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,362.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,173.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="1093.5,461.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,769"
+              Start="0,0"
+              End="0,761.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,761.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 20]"
+          TopLeft="803.3,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-173.8,778"
+              Start="0,0"
+              End="-173.8,770.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,202.237938786097" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,202.237938786097"
+                    Point2="0,206.237938786097"
+                    Point3="-4,206.237938786097" />
+                  <mssgle:LineSegment
+                    End="-169.8,206.237938786097" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-169.8,206.237938786097"
+                    Point2="-173.8,206.237938786097"
+                    Point3="-173.8,210.237938786097" />
+                  <mssgle:LineSegment
+                    End="-173.8,770.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-94.8999999999999,211.237938786097,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="1170.5,359.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-53.8333333333333,60"
+              Start="0,0"
+              End="-53.8333333333333,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.6123822341858" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.6123822341858"
+                    Point2="0,35.6123822341858"
+                    Point3="-4,35.6123822341858" />
+                  <mssgle:LineSegment
+                    End="-49.8333333333333,35.6123822341858" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-49.8333333333333,35.6123822341858"
+                    Point2="-53.8333333333333,35.6123822341858"
+                    Point3="-53.8333333333333,39.6123822341858" />
+                  <mssgle:LineSegment
+                    End="-53.8333333333333,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-34.9166666666666,40.6123822341858,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="1138.5,359.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-236.5,60"
+              Start="0,0"
+              End="-236.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.207497820401" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.207497820401"
+                    Point2="0,26.207497820401"
+                    Point3="-4,26.207497820401" />
+                  <mssgle:LineSegment
+                    End="-232.5,26.207497820401" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-232.5,26.207497820401"
+                    Point2="-236.5,26.207497820401"
+                    Point3="-236.5,30.207497820401" />
+                  <mssgle:LineSegment
+                    End="-236.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-126.25,31.207497820401,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="1043.5,151.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-38.6666666666666,60"
+              Start="0,0"
+              End="-38.6666666666666,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5813953488372" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.5813953488372"
+                    Point2="0,35.5813953488372"
+                    Point3="-4,35.5813953488372" />
+                  <mssgle:LineSegment
+                    End="-34.6666666666666,35.5813953488372" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-34.6666666666666,35.5813953488372"
+                    Point2="-38.6666666666666,35.5813953488372"
+                    Point3="-38.6666666666666,39.5813953488372" />
+                  <mssgle:LineSegment
+                    End="-38.6666666666666,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-27.3333333333333,40.5813953488372,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="815.5,563.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="22,60"
+              Start="0,0"
+              End="22,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
+                  <mssgle:LineSegment
+                    End="18,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18,30"
+                    Point2="22,30"
+                    Point3="22,34" />
+                  <mssgle:LineSegment
+                    End="22,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="3,35,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="1202.5,359.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="127.5,60"
+              Start="0,0"
+              End="127.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.1807944948389" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.1807944948389"
+                    Point2="0,26.1807944948389"
+                    Point3="4,26.1807944948389" />
+                  <mssgle:LineSegment
+                    End="123.5,26.1807944948389" />
+                  <mssgle:CubicBezierSegment
+                    Point1="123.5,26.1807944948389"
+                    Point2="127.5,26.1807944948389"
+                    Point3="127.5,30.1807944948389" />
+                  <mssgle:LineSegment
+                    End="127.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="55.75,31.1807944948389,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="837.5,665.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-118.5,60"
+              Start="0,0"
+              End="-118.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.6175298804781" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.6175298804781"
+                    Point2="0,35.6175298804781"
+                    Point3="-4,35.6175298804781" />
+                  <mssgle:LineSegment
+                    End="-114.5,35.6175298804781" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-114.5,35.6175298804781"
+                    Point2="-118.5,35.6175298804781"
+                    Point3="-118.5,39.6175298804781" />
+                  <mssgle:LineSegment
+                    End="-118.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-67.2499999999999,40.6175298804781,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="875.5,461.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-32.6666666666666,60"
+              Start="0,0"
+              End="-32.6666666666666,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.668202764977" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.668202764977"
+                    Point2="0,35.668202764977"
+                    Point3="-4,35.668202764977" />
+                  <mssgle:LineSegment
+                    End="-28.6666666666666,35.668202764977" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-28.6666666666666,35.668202764977"
+                    Point2="-32.6666666666666,35.668202764977"
+                    Point3="-32.6666666666666,39.668202764977" />
+                  <mssgle:LineSegment
+                    End="-32.6666666666666,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-24.3333333333333,40.668202764977,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="SMTPStartNotification: &#xA;Send a notification about start of package.&#xA;&#xA;EPT Unzip:&#xA;Unzipping package(sample package is not actually&#xA;unzipping or Validation)"
+          ParentId="Package"
+          Size="286,121"
+          Id="f1e0de81-d6e2-4038-b2a1-1827b150d900"
+          TopLeft="678.5,1193">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="11.25"
+              Color="#FF080000"
+              Weight="Bold">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="SMT_StartNotification:&#xA;Sends Mail on start of the package execution to the specified Notification Users&#xA;&#xA;EPT_Unzip:&#xA;Calls Child Package for Unzipping data from Support folder&#xA;&#xA;EPT_Validation:&#xA;Calls Child Package for Column Validation data from Support folder. &#xA;This Package compares the column names of the raw file and stage table for the source&#xA;Also, it verifies the delimiter and change in positioning of the columns.&#xA;&#xA;EPT Stage:&#xA;Calls Child Package for Loading Data into stage. In Stage package first Alt enter is &#xA;removed and then imported in USRCAStage table.&#xA;&#xA;EPT_Rawdata:&#xA;Imports distinct records(RecordMDID) into the Rawdata table in ES_SDR_DB. &#xA;Stage table gets truncated everytime we run the data&#xA;&#xA;EPT_VersionRef:&#xA;Imports RecordMDID, version into the VersionRef table in ES_SDR_DB from stage table.&#xA;&#xA;&#xA;EPT_InputAddress:&#xA;Imports distinct Raw Adrdesses(InputAddressMDID) into the InputAddress table in ES_SDR_DB.&#xA;It imports only extra input addresses in the verion getting imported over the previously loaded versions&#xA;&#xA;&#xA;SMT_PackageCompletionNotification&#xA;Sends email Notification at the end, when all the packages intended to be run by User has Ended.&#xA;&#xA;Note:&#xA;(1) In the Event Handler, email notification is set on each child package for On Error Event.&#xA;(2) Checkpoint has been enabled for all the child packages as the package should start from the point of failure&#xA;(3) The Package is desinged so that if  production run has to be started from intermediate step&#xA; then it can be controlled from the variables in the config file defined in the Precedance Control Expressions.&#xA;(4) All the child package path are set in Variable and path is being calculated based on the Drive specified in Config File"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="612,517"
+          Id="44ec925c-5b2a-4224-aa9b-3f59c47f918a"
+          TopLeft="5.50000000000011,929.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package\EPT_BaseData.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="302,42"
+          Id="Package\EPT_BaseData.EventHandlers[OnError]\SMT_GeocodeOutputAddressFailureNotification"
+          TopLeft="60,60" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\EPT_DataFlag.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="302,42"
+          Id="Package\EPT_DataFlag.EventHandlers[OnError]\SMT_GeocodeOutputAddressFailureNotification"
+          TopLeft="60,60" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\EPT_GeocodeOutputAddress.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="302,42"
+          Id="Package\EPT_GeocodeOutputAddress.EventHandlers[OnError]\SMT_GeocodeOutputAddressFailureNotification"
+          TopLeft="60,60" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\EPT_GeocodeStage.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="259,42"
+          Id="Package\EPT_GeocodeStage.EventHandlers[OnError]\SMT_GeocodeStageFailureNotification"
+          TopLeft="60,60" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\EPT_Inputaddress.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="153,44"
+          Id="Package\EPT_Inputaddress.EventHandlers[OnError]\SMT_InputaddressFailureNotification"
+          TopLeft="60,60" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\EPT_RawData.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="153,44"
+          Id="Package\EPT_RawData.EventHandlers[OnError]\SMT_RawDataFailureNotification"
+          TopLeft="60,60" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\EPT_Stage.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\EPT_Stage.EventHandlers[OnError]\SMT_StageFailureNotification"
+          TopLeft="60,60" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\EPT_Unzip.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\EPT_Unzip.EventHandlers[OnError]\SMT_UnzipFailureNotification"
+          TopLeft="60,60" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\EPT_Validation.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\EPT_Validation.EventHandlers[OnError]\SMT_ValidationFailureNotification"
+          TopLeft="60,60" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\EPT_VersionRef.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="153,44"
+          Id="Package\EPT_VersionRef.EventHandlers[OnError]\SMT_VersionRefFailureNotification"
+          TopLeft="60,60" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

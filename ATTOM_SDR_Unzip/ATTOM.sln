@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "ATTOM_SDR", "ATTOM_SDR_Unzip\ATTOM_SDR1.dtproj", "{A7B88DDF-ECD8-4A69-8E35-2835DF90C622}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Any CPU|Default = Any CPU|Default
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A7B88DDF-ECD8-4A69-8E35-2835DF90C622}.Any CPU|Default.ActiveCfg = Any CPU
+		{A7B88DDF-ECD8-4A69-8E35-2835DF90C622}.Any CPU|Default.Build.0 = Any CPU
+		{A7B88DDF-ECD8-4A69-8E35-2835DF90C622}.Development|Default.ActiveCfg = Development
+		{A7B88DDF-ECD8-4A69-8E35-2835DF90C622}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
